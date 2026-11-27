@@ -15,21 +15,31 @@
 
     <!-- Login Screen -->
     <string name="login_sso_version">v2.4</string>
+    <string name="login_role_student">Student</string>
+    <string name="login_role_admin">Admin</string>
     <string name="login_hero_title">Sign In</string>
+    <string name="login_hero_title_student">Student Sign In</string>
+    <string name="login_hero_title_admin">Admin Sign In</string>
     <string name="login_hero_subtitle">Access campus notices and complaints.</string>
+    <string name="login_hero_subtitle_admin">Manage complaints, notices, and users.</string>
     <string name="login_label_email">Email</string>
     <string name="login_verified_sso">Verified</string>
     <string name="login_hint_email">name@university.edu</string>
+    <string name="login_hint_email_admin">admin@uni.com</string>
     <string name="login_label_password">Password</string>
     <string name="login_hint_password">Enter password</string>
     <string name="login_remember_device">Remember me</string>
     <string name="login_show_password">Show password</string>
     <string name="login_forgot_password">Forgot?</string>
     <string name="login_button_sign_in">Sign In</string>
+    <string name="login_button_sign_in_student">Sign In as Student</string>
+    <string name="login_button_sign_in_admin">Sign In as Admin</string>
     <string name="login_no_account">New here? </string>
     <string name="login_create_account">Create account</string>
     <string name="login_forgot_password_toast">Please contact the university admin (admin@uni.com) to reset your password.</string>
     <string name="login_error_invalid">Invalid email or password. Please try again.</string>
+    <string name="login_error_wrong_role_admin">This is a Student account. Please switch to Student login.</string>
+    <string name="login_error_wrong_role_student">This is an Admin account. Please switch to Admin login.</string>
     <string name="login_welcome_user">Welcome back, %1$s!</string>
 
     <!-- Register Screen -->

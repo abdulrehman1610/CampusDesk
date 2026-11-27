@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Centered crimson rounded-rectangle background for the active Student/Admin login toggle option. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <inset
+            android:insetBottom="2dp"
+            android:insetLeft="2dp"
+            android:insetRight="2dp"
+            android:insetTop="2dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/crimson" />
+                <corners android:radius="18dp" />
+            </shape>
+        </inset>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/transparent" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+</selector>

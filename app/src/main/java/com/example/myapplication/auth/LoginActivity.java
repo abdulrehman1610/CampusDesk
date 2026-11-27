@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +24,16 @@ import com.example.myapplication.utils.Constants;
 import com.example.myapplication.utils.SessionManager;
 
 /**
- * LoginActivity handles user and admin sign-in (PRD Section 5.1 A3, A4, A5).
- * It validates credentials against SQLite, saves the session in SharedPreferences,
- * and routes to either UserDashboardActivity or AdminDashboardActivity based on role.
+ * LoginActivity handles both Student and Admin sign-in from a single screen (PRD Section 5.1 A3-A5).
+ * A top segmented toggle pill switches between Student and Admin mode, hides registration in Admin
+ * mode, enforces role matching against SQLite, saves the session in SharedPreferences, and routes
+ * to UserDashboardActivity or AdminDashboardActivity.
  */
 public class LoginActivity extends AppCompatActivity {
 
+    private TextView tvLoginTitle;
+    private TextView tvLoginSubtitle;
+    private RadioGroup rgLoginRole;
     private EditText etEmail;
     private EditText etPassword;
     private ImageView ivTogglePassword;
@@ -36,11 +41,13 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox cbShowPassword;
     private TextView tvForgotPassword;
     private Button btnLogin;
+    private View layoutRegisterRow;
     private View layoutCreateAccount;
 
     private DatabaseHelper dbHelper;
     private SessionManager sessionManager;
     private boolean isPasswordVisible = false;
+    private String selectedRole = Constants.ROLE_USER;
 
     /**
      * Initializes the Login UI views, database helper, session manager, and click listeners.
@@ -55,12 +62,16 @@ public class LoginActivity extends AppCompatActivity {
 
         bindViews();
         setupListeners();
+        updateRoleMode(Constants.ROLE_USER);
     }
 
     /**
      * Connects Java fields to XML views using findViewById (PRD Section 2).
      */
     private void bindViews() {
+        tvLoginTitle = findViewById(R.id.tvLoginTitle);
+        tvLoginSubtitle = findViewById(R.id.tvLoginSubtitle);
+        rgLoginRole = findViewById(R.id.rgLoginRole);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         ivTogglePassword = findViewById(R.id.ivTogglePassword);
@@ -68,19 +79,29 @@ public class LoginActivity extends AppCompatActivity {
         cbShowPassword = findViewById(R.id.cbShowPassword);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        layoutRegisterRow = findViewById(R.id.layoutRegisterRow);
         layoutCreateAccount = findViewById(R.id.layoutCreateAccount);
     }
 
     /**
-     * Attaches click and check-change listeners to buttons, checkboxes, and links.
+     * Attaches role toggle, password visibility, login, and registration listeners.
      */
     private void setupListeners() {
+        // Switch between Student and Admin login modes
+        rgLoginRole.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rbRoleAdmin) {
+                updateRoleMode(Constants.ROLE_ADMIN);
+            } else {
+                updateRoleMode(Constants.ROLE_USER);
+            }
+        });
+
         // Show/hide password via the CheckBox (PRD A4)
         cbShowPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
             setPasswordVisibility(isChecked);
         });
 
-        // Show/hide password via the eye icon inside the password box (Figma design)
+        // Show/hide password via the eye icon inside the password box
         ivTogglePassword.setOnClickListener(v -> {
             boolean newState = !isPasswordVisible;
             cbShowPassword.setChecked(newState);
@@ -95,11 +116,35 @@ public class LoginActivity extends AppCompatActivity {
         // Primary Sign In button
         btnLogin.setOnClickListener(v -> attemptLogin());
 
-        // Navigate to RegisterActivity
+        // Navigate to RegisterActivity (Student mode only)
         layoutCreateAccount.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+    }
+
+    /**
+     * Updates the screen title, subtitle, email hint, button text, and registration visibility
+     * when the user toggles between Student and Admin login.
+     */
+    private void updateRoleMode(String role) {
+        selectedRole = role;
+        etEmail.setError(null);
+        etPassword.setError(null);
+
+        if (Constants.ROLE_ADMIN.equals(role)) {
+            tvLoginTitle.setText(R.string.login_hero_title_admin);
+            tvLoginSubtitle.setText(R.string.login_hero_subtitle_admin);
+            etEmail.setHint(R.string.login_hint_email_admin);
+            btnLogin.setText(R.string.login_button_sign_in_admin);
+            layoutRegisterRow.setVisibility(View.GONE);
+        } else {
+            tvLoginTitle.setText(R.string.login_hero_title_student);
+            tvLoginSubtitle.setText(R.string.login_hero_subtitle);
+            etEmail.setHint(R.string.login_hint_email);
+            btnLogin.setText(R.string.login_button_sign_in_student);
+            layoutRegisterRow.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
@@ -117,8 +162,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Validates the email and password fields, checks SQLite, saves the session,
-     * and opens the appropriate dashboard via an explicit Intent.
+     * Validates email/password, checks SQLite credentials, enforces that the account's role
+     * matches the selected Student/Admin toggle, saves the session, and opens the dashboard.
      */
     private void attemptLogin() {
         String email = etEmail.getText().toString().trim();
@@ -143,10 +188,20 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Check database
+        // Check database credentials
         User user = dbHelper.loginUser(email, password);
         if (user == null) {
             Toast.makeText(this, R.string.login_error_invalid, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Enforce that the user's database role matches the selected Student/Admin login portal
+        if (!selectedRole.equals(user.getRole())) {
+            if (Constants.ROLE_ADMIN.equals(selectedRole)) {
+                Toast.makeText(this, R.string.login_error_wrong_role_admin, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, R.string.login_error_wrong_role_student, Toast.LENGTH_LONG).show();
+            }
             return;
         }
 
