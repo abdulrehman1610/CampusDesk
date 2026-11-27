@@ -1,109 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Complaint Card layout matching Figma node 2:783 "Article - Complaint".
-     Shows ticket ID (#C-0001), category/student subtitle, colored status badge
-     (Pending = orange, Resolved = green per PRD Section 9), title, description preview,
-     priority badge, date, and "View Details" link. -->
+<!-- Minimal, responsive Complaint Card layout with zero text overlap on any screen width. -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="14dp"
+    android:layout_marginBottom="12dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/radius_card_large"
-    app:cardElevation="2dp"
+    app:cardElevation="1dp"
     app:strokeColor="@color/outline"
     app:strokeWidth="1dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <!-- Left 6dp vertical status accent bar (Figma 2:814) -->
+        <!-- Left Vertical Status Accent Stripe -->
         <View
             android:id="@+id/viewComplaintStatusStripe"
-            android:layout_width="6dp"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/layoutComplaintCardContent"
-            android:layout_alignBottom="@id/layoutComplaintCardContent"
-            android:layout_alignParentStart="true"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
             android:background="@color/status_pending" />
 
         <LinearLayout
             android:id="@+id/layoutComplaintCardContent"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/viewComplaintStatusStripe"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- Upper Padded Content -->
+            <!-- Main Content -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="12dp">
+                android:padding="@dimen/card_padding">
 
-                <!-- Top Row: Ticket ID + Category/Student on left, Colored Status Badge on right -->
-                <RelativeLayout
+                <!-- Top Row: Ticket ID + Student/Category + Status Badge -->
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvComplaintTicketCode"
+                        style="@style/Text.TicketId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@id/tvComplaintStatusBadge"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:fontFamily="@font/jetbrains_mono_medium"
+                        android:textColor="@color/crimson_dark"
+                        android:textSize="@dimen/text_small" />
 
-                        <TextView
-                            android:id="@+id/tvComplaintTicketCode"
-                            style="@style/Text.TicketId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/jetbrains_mono_medium"
-                            android:textColor="@color/crimson_dark"
-                            android:textSize="@dimen/text_body" />
+                    <TextView
+                        android:id="@+id/tvComplaintSubheader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:maxLines="1"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_caption" />
 
-                        <TextView
-                            android:id="@+id/tvComplaintSubheader"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/plus_jakarta_sans_medium"
-                            android:maxLines="1"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="@dimen/text_small" />
-                    </LinearLayout>
-
-                    <!-- Colored Status Badge: Pending = orange (#F59E0B), Resolved = green (#16A34A) -->
                     <TextView
                         android:id="@+id/tvComplaintStatusBadge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
                         android:background="@drawable/bg_badge_pending"
                         android:fontFamily="@font/plus_jakarta_sans_bold"
                         android:paddingStart="10dp"
-                        android:paddingTop="4dp"
+                        android:paddingTop="3dp"
                         android:paddingEnd="10dp"
-                        android:paddingBottom="4dp"
+                        android:paddingBottom="3dp"
                         android:textColor="@color/status_pending"
-                        android:textSize="@dimen/text_small" />
-                </RelativeLayout>
+                        android:textSize="@dimen/text_caption" />
+                </LinearLayout>
 
                 <!-- Complaint Title -->
                 <TextView
                     android:id="@+id/tvComplaintTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:maxLines="2"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_body_large" />
 
@@ -121,76 +106,65 @@
                     android:textSize="@dimen/text_body" />
             </LinearLayout>
 
-            <!-- Bottom Dynamic Meta & Action Row (Figma 2:800) -->
-            <RelativeLayout
+            <!-- Compact Responsive Meta Footer -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/input_bg"
-                android:paddingStart="16dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="10dp">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/card_padding"
+                android:paddingTop="8dp"
+                android:paddingEnd="@dimen/card_padding"
+                android:paddingBottom="8dp">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tvComplaintCategoryChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:background="@drawable/bg_chip_blue"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/midnight"
+                    android:textSize="@dimen/text_tiny" />
 
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:contentDescription="@string/my_complaints_logs_heading"
-                        android:src="@drawable/ic_clock_small" />
+                <TextView
+                    android:id="@+id/tvComplaintPriorityChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:maxLines="1"
+                    android:textSize="@dimen/text_caption" />
 
-                    <TextView
-                        android:id="@+id/tvComplaintDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/plus_jakarta_sans_regular"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_caption" />
-
-                    <!-- Category Chip -->
-                    <TextView
-                        android:id="@+id/tvComplaintCategoryChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_chip_blue"
-                        android:fontFamily="@font/plus_jakarta_sans_semibold"
-                        android:paddingStart="8dp"
-                        android:paddingTop="2dp"
-                        android:paddingEnd="8dp"
-                        android:paddingBottom="2dp"
-                        android:textColor="@color/midnight"
-                        android:textSize="@dimen/text_tiny" />
-
-                    <!-- Priority Text (colored Low=green, Medium=orange, High=red) -->
-                    <TextView
-                        android:id="@+id/tvComplaintPriorityChip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/plus_jakarta_sans_bold"
-                        android:textSize="@dimen/text_caption" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tvComplaintDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:maxLines="1"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
 
                 <TextView
                     android:id="@+id/tvComplaintActionLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
                     android:fontFamily="@font/plus_jakarta_sans_bold"
                     android:text="@string/complaint_card_view_timeline"
                     android:textColor="@color/crimson_dark"
-                    android:textSize="@dimen/text_small" />
-            </RelativeLayout>
+                    android:textSize="@dimen/text_caption" />
+            </LinearLayout>
 
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

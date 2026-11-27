@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Background selector for each tab inside TabLayout on AdminDashboardActivity.
-     Draws the crimson pill BEHIND the tab text when selected, instead of on top of the text. -->
+<!-- Centered crimson rounded-rectangle pill behind the selected Admin TabLayout tab.
+     Symmetric insets ensure balanced padding and dead-center text on every screen width. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/crimson" />
-            <corners android:radius="@dimen/radius_pill" />
-        </shape>
+        <inset
+            android:insetBottom="2dp"
+            android:insetLeft="2dp"
+            android:insetRight="2dp"
+            android:insetTop="2dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/crimson" />
+                <corners android:radius="18dp" />
+            </shape>
+        </inset>
     </item>
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@color/transparent" />
-            <corners android:radius="@dimen/radius_pill" />
+            <corners android:radius="18dp" />
         </shape>
     </item>
 </selector>

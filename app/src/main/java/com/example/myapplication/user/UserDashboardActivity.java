@@ -54,8 +54,8 @@ public class UserDashboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         bottomNav = findViewById(R.id.bottomNavUser);
-        // Prevent Material 3 BottomNavigationView from adding extra bottom system-bar padding
-        // inside our fixed-height floating pill dock (which would clip the icons and labels).
+        // Keep icons and labels dead-center inside the floating dock without inset clipping or shifting.
+        bottomNav.setItemHorizontalTranslationEnabled(false);
         bottomNav.setItemIconTintList(getColorStateList(R.color.bottom_nav_color));
         bottomNav.setItemTextColor(getColorStateList(R.color.bottom_nav_color));
         ViewCompat.setOnApplyWindowInsetsListener(bottomNav, (v, insets) -> {

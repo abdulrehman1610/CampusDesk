@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- User Dashboard layout matching Figma node 2:467 header + floating bottom dock.
-     Uses MaterialToolbar (Logout menu), a FrameLayout fragment container,
-     and a floating rounded midnight BottomNavigationView dock (PRD Section 3 & 7). -->
+<!-- Minimal, responsive User Dashboard layout.
+     Features a compact midnight top bar, full-bleed fragment host, and a centered floating
+     midnight BottomNavigationView dock with a responsive centered crimson active pill. -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/surface">
 
-    <!-- Top Midnight Header Bar with Crimson Logo Badge & Toolbar Logout Menu (Figma 2:658) -->
+    <!-- Compact Top Midnight Header Bar -->
     <LinearLayout
         android:id="@+id/headerUserBar"
         android:layout_width="match_parent"
@@ -18,17 +18,19 @@
         android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="8dp">
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp">
 
         <FrameLayout
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:background="@drawable/bg_circle_crimson">
 
             <ImageView
-                android:layout_width="18dp"
-                android:layout_height="15dp"
+                android:layout_width="17dp"
+                android:layout_height="14dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_cap_white" />
@@ -40,11 +42,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/transparent"
+            android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.Material3.Light"
             app:subtitle="@string/user_subtitle_notices"
             app:subtitleTextColor="@color/white"
-            app:title="@string/admin_dashboard_subtitle"
+            app:title="@string/app_name"
             app:titleTextColor="@color/pink_soft" />
     </LinearLayout>
 
@@ -55,32 +58,38 @@
         android:layout_height="match_parent"
         android:layout_below="@id/headerUserBar" />
 
-    <!-- Floating Midnight Bottom Navigation Dock (Figma 2:676) -->
+    <!-- Responsive Centered Floating Bottom Navigation Dock -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavUser"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="@dimen/navbar_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginStart="@dimen/navbar_margin_h"
+        android:layout_marginEnd="@dimen/navbar_margin_h"
+        android:layout_marginBottom="@dimen/navbar_margin_b"
         android:background="@drawable/bg_bottom_dock"
-        android:elevation="12dp"
-        android:minHeight="60dp"
+        android:elevation="10dp"
+        android:minHeight="@dimen/navbar_height"
         android:paddingStart="6dp"
-        android:paddingTop="4dp"
+        android:paddingTop="0dp"
         android:paddingEnd="6dp"
-        android:paddingBottom="4dp"
+        android:paddingBottom="0dp"
+        app:activeIndicatorLabelPadding="4dp"
         app:backgroundTint="@null"
         app:compatShadowEnabled="false"
         app:elevation="0dp"
         app:itemActiveIndicatorStyle="@null"
         app:itemBackground="@drawable/bg_bottom_nav_item"
-        app:itemIconSize="22dp"
+        app:itemGravity="center"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconSize="20dp"
         app:itemIconTint="@color/bottom_nav_color"
-        app:itemPaddingBottom="8dp"
-        app:itemPaddingTop="8dp"
+        app:itemPaddingBottom="0dp"
+        app:itemPaddingTop="0dp"
         app:itemRippleColor="@color/transparent"
+        app:itemTextAppearanceActive="@style/Text.NavLabel"
+        app:itemTextAppearanceActiveBoldEnabled="true"
+        app:itemTextAppearanceInactive="@style/Text.NavLabel"
         app:itemTextColor="@color/bottom_nav_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_bottom_user" />

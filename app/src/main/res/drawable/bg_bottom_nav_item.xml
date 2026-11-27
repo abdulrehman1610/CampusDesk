@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Active item pill indicator behind the selected icon/text in BottomNavigationView. -->
+<!-- Centered crimson rounded-rectangle pill behind the selected BottomNavigationView tab.
+     Symmetric insets keep the active pill centered inside the dark floating dock on all screen widths. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/crimson" />
-            <corners android:radius="@dimen/radius_pill" />
-        </shape>
+        <inset
+            android:insetBottom="6dp"
+            android:insetLeft="4dp"
+            android:insetRight="4dp"
+            android:insetTop="6dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/crimson" />
+                <corners android:radius="20dp" />
+            </shape>
+        </inset>
     </item>
     <item android:state_selected="true">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/crimson" />
-            <corners android:radius="@dimen/radius_pill" />
-        </shape>
+        <inset
+            android:insetBottom="6dp"
+            android:insetLeft="4dp"
+            android:insetRight="4dp"
+            android:insetTop="6dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/crimson" />
+                <corners android:radius="20dp" />
+            </shape>
+        </inset>
     </item>
     <item>
         <shape android:shape="rectangle">

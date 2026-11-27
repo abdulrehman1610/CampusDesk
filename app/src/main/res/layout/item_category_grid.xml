@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- GridView tile layout for Incident Category selection (Figma 2:293 & PRD Section 3 / U5). -->
+<!-- Compact, responsive GridView tile for Complaint Category selection. -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutCategoryTile"
     android:layout_width="match_parent"
-    android:layout_height="136dp"
+    android:layout_height="94dp"
     android:background="@drawable/bg_category_unselected"
-    android:padding="14dp">
+    android:padding="12dp">
 
-    <!-- Top-left Icon Circle (crimson when selected, white when unselected) -->
+    <!-- Top-left Icon Circle -->
     <FrameLayout
         android:id="@+id/frameCategoryIcon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/bg_circle_white">
 
         <ImageView
             android:id="@+id/ivCategoryIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_gravity="center"
             android:contentDescription="@string/new_complaint_label_category"
             android:src="@drawable/ic_cat_hostel" />
     </FrameLayout>
 
-    <!-- Top-right Selected Checkmark Badge (visible only when selected) -->
+    <!-- Top-right Selected Checkmark -->
     <FrameLayout
         android:id="@+id/frameCategoryCheck"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/bg_circle_crimson"
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="10dp"
-            android:layout_height="8dp"
+            android:layout_width="9dp"
+            android:layout_height="7dp"
             android:layout_gravity="center"
             android:contentDescription="@string/new_complaint_label_category"
             android:src="@drawable/ic_check_white"
             app:tint="@color/white" />
     </FrameLayout>
 
-    <!-- Category Title & Subtitle at bottom of tile -->
+    <!-- Category Title & Short 1-line Subtitle -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,8 +54,9 @@
 
         <TextView
             android:id="@+id/tvCategoryName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:fontFamily="@font/plus_jakarta_sans_bold"
             android:maxLines="1"
             android:textColor="@color/text_primary"
@@ -63,14 +64,13 @@
 
         <TextView
             android:id="@+id/tvCategorySub"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:ellipsize="end"
             android:fontFamily="@font/plus_jakarta_sans_regular"
-            android:lineSpacingExtra="1dp"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textColor="@color/text_secondary"
-            android:textSize="@dimen/text_small" />
+            android:textSize="@dimen/text_caption" />
     </LinearLayout>
 
 </RelativeLayout>

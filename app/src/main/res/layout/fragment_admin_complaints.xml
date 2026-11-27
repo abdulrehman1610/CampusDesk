@@ -1,171 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Admin Complaints Tab layout matching Figma node 2:1398 "Admin Complaints (Crimson Dynamic)" & PRD D3, D4, D9.
-     Features the Live Queue Activity summary card, search bar, Status Filter Spinner (PRD D4: All/Pending/Resolved),
-     Sort Spinner (PRD D9: Date/Priority), interactive filter chips, and RecyclerView of all complaints. -->
+<!-- Minimal, responsive Admin Complaints Tab layout. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/surface"
     android:orientation="vertical"
-    android:paddingStart="20dp"
-    android:paddingTop="10dp"
-    android:paddingEnd="20dp">
+    android:paddingStart="@dimen/screen_padding"
+    android:paddingTop="8dp"
+    android:paddingEnd="@dimen/screen_padding">
 
-    <!-- Live Queue Activity Summary Card (Figma 2:1475) -->
+    <!-- Compact 3-Metric Summary Strip -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_white_box"
-        android:orientation="vertical"
-        android:padding="14dp">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <View
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:background="@drawable/bg_dot_crimson" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/plus_jakarta_sans_bold"
-                    android:text="@string/admin_complaints_live_queue"
-                    android:textColor="@color/text_label_warm"
-                    android:textSize="@dimen/text_caption" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_box"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/tvAdminQueueCountBadge"
+                android:id="@+id/tvAdminStatPending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_chip_pink"
-                android:fontFamily="@font/plus_jakarta_sans_bold"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="2dp"
-                android:textColor="@color/crimson_deep"
-                android:textSize="@dimen/text_small" />
-        </RelativeLayout>
+                android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                android:textColor="@color/crimson_dark"
+                android:textSize="@dimen/text_title" />
 
-        <!-- 3 Mini Metric Boxes: Pending, Resolved, Total (Figma 2:1483) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:text="@string/admin_complaints_stat_pending"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption" />
+        </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_box"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tvAdminStatResolved"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bg_input_box"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                android:textColor="@color/status_resolved"
+                android:textSize="@dimen/text_title" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/plus_jakarta_sans_regular"
-                    android:text="@string/admin_complaints_stat_pending"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/text_small" />
-
-                <TextView
-                    android:id="@+id/tvAdminStatPending"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/plus_jakarta_sans_extrabold"
-                    android:textColor="@color/crimson_dark"
-                    android:textSize="@dimen/text_body_large" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_input_box"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:text="@string/admin_complaints_stat_resolved"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/plus_jakarta_sans_regular"
-                    android:text="@string/admin_complaints_stat_resolved"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/text_small" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_box"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-                <TextView
-                    android:id="@+id/tvAdminStatResolved"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/plus_jakarta_sans_extrabold"
-                    android:textColor="@color/status_resolved"
-                    android:textSize="@dimen/text_body_large" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tvAdminStatTotal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bg_input_box"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_title" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/plus_jakarta_sans_regular"
-                    android:text="@string/admin_complaints_stat_total"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/text_small" />
-
-                <TextView
-                    android:id="@+id/tvAdminStatTotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/plus_jakarta_sans_extrabold"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_body_large" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:text="@string/admin_complaints_stat_total"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Search Bar (Figma 2:1455) -->
+    <!-- Search Bar -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="44dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_input_pill"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp">
 
         <ImageView
-            android:layout_width="17dp"
+            android:layout_width="16dp"
             android:layout_height="14dp"
             android:contentDescription="@string/admin_complaints_search_hint"
             android:src="@drawable/ic_search"
@@ -185,9 +130,22 @@
             android:textColor="@color/text_primary"
             android:textColorHint="@color/text_secondary"
             android:textSize="@dimen/text_body" />
+
+        <TextView
+            android:id="@+id/tvAdminQueueCountBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chip_pink"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/crimson_deep"
+            android:textSize="@dimen/text_caption" />
     </LinearLayout>
 
-    <!-- Dual Filter Row: Status Filter Chips + Status Spinner (PRD D4) + Sort Spinner (PRD D9) -->
+    <!-- Responsive Filter Chips Row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -195,85 +153,67 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <!-- Status Filter Chips (Figma 2:1506) -->
         <TextView
             android:id="@+id/chipAdminAll"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="34dp"
+            android:layout_weight="1"
             android:background="@drawable/bg_button_crimson"
             android:fontFamily="@font/plus_jakarta_sans_semibold"
             android:gravity="center"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
             android:text="@string/admin_filter_all"
             android:textColor="@color/white"
             android:textSize="@dimen/text_small" />
 
         <TextView
             android:id="@+id/chipAdminPending"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="34dp"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
             android:background="@drawable/bg_input_pill"
             android:fontFamily="@font/plus_jakarta_sans_medium"
             android:gravity="center"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
             android:text="@string/admin_filter_pending"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_small" />
 
         <TextView
             android:id="@+id/chipAdminResolved"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="34dp"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
             android:background="@drawable/bg_input_pill"
             android:fontFamily="@font/plus_jakarta_sans_medium"
             android:gravity="center"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
             android:text="@string/admin_filter_resolved"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_small" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
-        <!-- Status Filter Spinner (PRD D4: All / Pending / Resolved) -->
-        <Spinner
-            android:id="@+id/spinnerAdminStatusFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp" />
     </LinearLayout>
 
-    <!-- Sort Spinner Row (PRD D9: Sort by Date / Priority) -->
-    <RelativeLayout
+    <!-- Status + Sort Spinners Row (PRD D4 & D9) -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp">
+        android:layout_marginTop="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:fontFamily="@font/plus_jakarta_sans_semibold"
-            android:text="@string/admin_filter_sort_label"
-            android:textColor="@color/text_secondary"
-            android:textSize="@dimen/text_small" />
+        <Spinner
+            android:id="@+id/spinnerAdminStatusFilter"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1" />
 
         <Spinner
             android:id="@+id/spinnerAdminSort"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
-    <!-- RecyclerView of All Student Complaints (PRD D3) -->
+    <!-- Complaints RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAdminComplaints"
         android:layout_width="match_parent"
@@ -283,7 +223,6 @@
         android:clipToPadding="false"
         android:paddingBottom="24dp" />
 
-    <!-- Empty-state TextView -->
     <TextView
         android:id="@+id/tvEmptyAdminComplaints"
         style="@style/Text.Secondary"

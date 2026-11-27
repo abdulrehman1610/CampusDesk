@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- My Complaints Tab layout matching Figma node 2:698 "My Complaints (Crimson Dynamic)".
-     Features 3 SQL stat tiles (Total, Pending, Resolved), search bar, category chips,
-     Sort Spinner, RecyclerView of the student's complaints, empty state, and Call Desk button. -->
+<!-- Minimal, responsive My Complaints Tab layout.
+     Clean 3-tile stats bar, search bar, category chips, sort spinner, complaint list,
+     and compact Help Desk call row. -->
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -13,46 +13,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="96dp">
+        android:paddingBottom="@dimen/bottom_list_clearance">
 
-        <!-- Midnight Header Slab with 3 Stat Counters Bento Row (Figma 2:701) -->
+        <!-- Compact Midnight Stats Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/midnight_soft"
             android:orientation="vertical"
-            android:paddingStart="20dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="34dp">
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingTop="10dp"
+            android:paddingEnd="@dimen/screen_padding"
+            android:paddingBottom="28dp">
 
-            <!-- Title Row & Live Active Badge (Figma 2:704) -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/bg_dot_crimson" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/plus_jakarta_sans_semibold"
-                        android:text="@string/my_complaints_desk_label"
-                        android:textColor="@color/outline"
-                        android:textSize="@dimen/text_caption" />
-                </LinearLayout>
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:text="@string/my_complaints_track_status"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_title" />
 
                 <TextView
                     android:id="@+id/tvActiveComplaintsBadge"
@@ -61,7 +47,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/bg_button_crimson"
-                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
                     android:paddingStart="10dp"
                     android:paddingTop="3dp"
                     android:paddingEnd="10dp"
@@ -70,32 +56,7 @@
                     android:textSize="@dimen/text_caption" />
             </RelativeLayout>
 
-            <!-- Overview Text & SLA Row (Figma 2:712) -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/plus_jakarta_sans_bold"
-                    android:text="@string/my_complaints_track_status"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_body_large" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:fontFamily="@font/plus_jakarta_sans_medium"
-                    android:text="@string/my_complaints_sla_met"
-                    android:textColor="@color/chip_blue"
-                    android:textSize="@dimen/text_small" />
-            </RelativeLayout>
-
-            <!-- 3 Stat Counters Bento Row: Total Filed, Pending, Resolved (Figma 2:715) -->
+            <!-- 3 Equal-Width Stat Tiles -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,15 +64,14 @@
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
-                <!-- Tile 1: Total Filed -->
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="72dp"
+                    android:layout_height="64dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stat_glass"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="8dp">
+                    android:padding="6dp">
 
                     <TextView
                         android:id="@+id/tvUserStatTotal"
@@ -124,126 +84,93 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/plus_jakarta_sans_regular"
                         android:text="@string/my_complaints_stat_total"
                         android:textColor="@color/outline"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_caption" />
                 </LinearLayout>
 
-                <!-- Tile 2: Pending (Highlighted Crimson) -->
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="72dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stat_crimson"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="8dp">
+                    android:padding="6dp">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvUserStatPending"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-                            android:contentDescription="@string/my_complaints_stat_pending"
-                            android:src="@drawable/ic_stat_pending" />
-
-                        <TextView
-                            android:id="@+id/tvUserStatPending"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:fontFamily="@font/plus_jakarta_sans_extrabold"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_title" />
-                    </LinearLayout>
+                        android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_title" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/plus_jakarta_sans_regular"
                         android:text="@string/my_complaints_stat_pending"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_caption" />
                 </LinearLayout>
 
-                <!-- Tile 3: Resolved -->
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="72dp"
+                    android:layout_height="64dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stat_glass"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="8dp">
+                    android:padding="6dp">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvUserStatResolved"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="13dp"
-                            android:layout_height="13dp"
-                            android:contentDescription="@string/my_complaints_stat_resolved"
-                            android:src="@drawable/ic_stat_resolved" />
-
-                        <TextView
-                            android:id="@+id/tvUserStatResolved"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:fontFamily="@font/plus_jakarta_sans_extrabold"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_title" />
-                    </LinearLayout>
+                        android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_title" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/plus_jakarta_sans_regular"
                         android:text="@string/my_complaints_stat_resolved"
                         android:textColor="@color/outline"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_caption" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Curved Canvas Sheet Overlap (Figma 2:739) -->
+        <!-- Clean Overlapping Sheet -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-20dp"
+            android:layout_marginTop="-16dp"
             android:background="@drawable/bg_sheet_rounded"
             android:orientation="vertical"
-            android:paddingStart="20dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="24dp">
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingTop="16dp"
+            android:paddingEnd="@dimen/screen_padding"
+            android:paddingBottom="16dp">
 
-            <!-- Search Ticket Code Bar (Figma 2:740) -->
+            <!-- Search Bar -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="44dp"
                 android:background="@drawable/bg_input_pill"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
 
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="15dp"
+                    android:layout_width="16dp"
+                    android:layout_height="14dp"
                     android:contentDescription="@string/my_complaints_search_hint"
                     android:src="@drawable/ic_search"
                     app:tint="@color/text_secondary" />
@@ -253,7 +180,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:background="@color/transparent"
                     android:fontFamily="@font/plus_jakarta_sans_regular"
@@ -263,20 +189,13 @@
                     android:textColor="@color/text_primary"
                     android:textColorHint="@color/text_secondary"
                     android:textSize="@dimen/text_body" />
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="13dp"
-                    android:contentDescription="@string/my_complaints_search_hint"
-                    android:src="@drawable/ic_sliders"
-                    app:tint="@color/text_secondary" />
             </LinearLayout>
 
-            <!-- Category Filter Pills Bar (Figma 2:750) -->
+            <!-- Category Filter Pills -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="12dp"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -288,107 +207,107 @@
                     <TextView
                         android:id="@+id/chipCatAll"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_height="34dp"
                         android:background="@drawable/bg_button_crimson"
                         android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:gravity="center"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
                         android:text="@string/my_complaints_filter_all"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_body" />
+                        android:textSize="@dimen/text_small" />
 
                     <TextView
                         android:id="@+id/chipCatHostel"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_height="34dp"
                         android:layout_marginStart="8dp"
                         android:background="@drawable/bg_input_pill"
                         android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:gravity="center"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
                         android:text="@string/category_hostel"
                         android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_body" />
+                        android:textSize="@dimen/text_small" />
 
                     <TextView
                         android:id="@+id/chipCatAcademic"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_height="34dp"
                         android:layout_marginStart="8dp"
                         android:background="@drawable/bg_input_pill"
                         android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:gravity="center"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
                         android:text="@string/category_academic"
                         android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_body" />
+                        android:textSize="@dimen/text_small" />
 
                     <TextView
                         android:id="@+id/chipCatTransport"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_height="34dp"
                         android:layout_marginStart="8dp"
                         android:background="@drawable/bg_input_pill"
                         android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:gravity="center"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
                         android:text="@string/category_transport"
                         android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_body" />
+                        android:textSize="@dimen/text_small" />
 
                     <TextView
                         android:id="@+id/chipCatFees"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_height="34dp"
                         android:layout_marginStart="8dp"
                         android:background="@drawable/bg_input_pill"
                         android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:gravity="center"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
                         android:text="@string/category_fees"
                         android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_body" />
+                        android:textSize="@dimen/text_small" />
 
                     <TextView
                         android:id="@+id/chipCatLibrary"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_height="34dp"
                         android:layout_marginStart="8dp"
                         android:background="@drawable/bg_input_pill"
                         android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:gravity="center"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
                         android:text="@string/category_library"
                         android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_body" />
+                        android:textSize="@dimen/text_small" />
 
                     <TextView
                         android:id="@+id/chipCatGeneral"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_height="34dp"
                         android:layout_marginStart="8dp"
                         android:background="@drawable/bg_input_pill"
                         android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:gravity="center"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
                         android:text="@string/category_general"
                         android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_body" />
+                        android:textSize="@dimen/text_small" />
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <!-- Active Section Header: Complaint Logs + Count Badge + Sort Spinner (Figma 2:771 & PRD Section 3) -->
+            <!-- Section Header + Sort Spinner -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="14dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -418,10 +337,9 @@
                         android:paddingEnd="8dp"
                         android:paddingBottom="2dp"
                         android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_caption" />
                 </LinearLayout>
 
-                <!-- Sort Spinner (PRD Section 3: Spinner syllabus coverage) -->
                 <Spinner
                     android:id="@+id/spinnerSortMyComplaints"
                     android:layout_width="wrap_content"
@@ -430,15 +348,14 @@
                     android:layout_centerVertical="true" />
             </RelativeLayout>
 
-            <!-- RecyclerView of the student's complaints (PRD U6) -->
+            <!-- Complaints RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMyComplaints"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:nestedScrollingEnabled="false" />
 
-            <!-- Empty-state TextView (PRD U11) -->
             <TextView
                 android:id="@+id/tvEmptyMyComplaints"
                 style="@style/Text.Secondary"
@@ -449,33 +366,20 @@
                 android:text="@string/my_complaints_empty"
                 android:visibility="gone" />
 
-            <!-- Campus SLA Commitment Box (Figma 2:881) -->
+            <!-- Compact Help Desk Bar (ACTION_DIAL) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_input_box"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_dark_card"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp">
-
-                <FrameLayout
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_circle_blue">
-
-                    <ImageView
-                        android:layout_width="14dp"
-                        android:layout_height="18dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/my_complaints_sla_box_title"
-                        android:src="@drawable/ic_shield_check" />
-                </FrameLayout>
+                android:padding="14dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -483,113 +387,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/plus_jakarta_sans_bold"
-                        android:text="@string/my_complaints_sla_box_title"
-                        android:textColor="@color/text_primary"
+                        android:text="@string/my_complaints_escalation_title"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/text_body" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/plus_jakarta_sans_regular"
-                        android:text="@string/my_complaints_sla_box_body"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_small" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Emergency Escalation Card with Call Desk Button (Figma 2:890) -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/bg_dark_card"
-                android:orientation="vertical"
-                android:padding="18dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <FrameLayout
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:background="@drawable/bg_circle_crimson">
-
-                            <ImageView
-                                android:layout_width="13dp"
-                                android:layout_height="15dp"
-                                android:layout_gravity="center"
-                                android:contentDescription="@string/my_complaints_escalation_title"
-                                android:src="@drawable/ic_urgent_flame" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/plus_jakarta_sans_bold"
-                                android:text="@string/my_complaints_escalation_title"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/text_body" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/plus_jakarta_sans_regular"
-                                android:text="@string/my_complaints_escalation_sub"
-                                android:textColor="@color/outline"
-                                android:textSize="@dimen/text_small" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bg_glass_pill"
-                        android:fontFamily="@font/plus_jakarta_sans_semibold"
-                        android:paddingStart="10dp"
-                        android:paddingTop="4dp"
-                        android:paddingEnd="10dp"
-                        android:paddingBottom="4dp"
-                        android:text="@string/my_complaints_escalation_live"
-                        android:textColor="@color/pink_soft"
+                        android:text="@string/my_complaints_escalation_sub"
+                        android:textColor="@color/outline"
                         android:textSize="@dimen/text_caption" />
-                </RelativeLayout>
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/plus_jakarta_sans_regular"
-                    android:lineSpacingExtra="2dp"
-                    android:text="@string/my_complaints_escalation_body"
-                    android:textColor="@color/outline"
-                    android:textSize="@dimen/text_small" />
-
-                <!-- Call Desk Button firing implicit ACTION_DIAL Intent -->
                 <Button
                     android:id="@+id/btnCallDesk"
                     style="@style/Button.Primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:minHeight="40dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:text="@string/my_complaints_btn_call_desk"
+                    android:textSize="@dimen/text_small"
                     app:icon="@drawable/ic_phone_call"
                     app:iconGravity="textStart" />
             </LinearLayout>

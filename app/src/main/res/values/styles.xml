@@ -88,6 +88,25 @@
         <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
     </style>
 
+    <!-- Centered, non-shifting label style for BottomNavigationView items -->
+    <style name="Text.NavLabel" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+
+    <!-- Centered, clean text style for Admin TabLayout items -->
+    <style name="Text.Tab" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
     <!-- ===== Buttons ===== -->
 
     <!-- Main crimson pill button (e.g. "Sign in to Console") -->

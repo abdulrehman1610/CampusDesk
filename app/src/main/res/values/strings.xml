@@ -13,55 +13,55 @@
     <string name="action_yes">Yes</string>
     <string name="action_no">No</string>
 
-    <!-- Login Screen (Figma 2:2) -->
-    <string name="login_sso_version">v2.4.1 SSO</string>
-    <string name="login_hero_title">Hello\nSign in!</string>
-    <string name="login_hero_subtitle">Access your administrative tickets and\nstudent routing manifest.</string>
-    <string name="login_label_email">University Email / SSO ID</string>
-    <string name="login_verified_sso">Verified SSO</string>
-    <string name="login_hint_email">hamza.ali@university.edu</string>
-    <string name="login_label_password">Master Keycode / Password</string>
-    <string name="login_hint_password">••••••••••••</string>
-    <string name="login_remember_device">Remember device</string>
+    <!-- Login Screen -->
+    <string name="login_sso_version">v2.4</string>
+    <string name="login_hero_title">Sign In</string>
+    <string name="login_hero_subtitle">Access campus notices and complaints.</string>
+    <string name="login_label_email">Email</string>
+    <string name="login_verified_sso">Verified</string>
+    <string name="login_hint_email">name@university.edu</string>
+    <string name="login_label_password">Password</string>
+    <string name="login_hint_password">Enter password</string>
+    <string name="login_remember_device">Remember me</string>
     <string name="login_show_password">Show password</string>
-    <string name="login_forgot_password">Forgot password?</string>
-    <string name="login_button_sign_in">Sign in to Console</string>
-    <string name="login_no_account">Don\'t have an account? </string>
+    <string name="login_forgot_password">Forgot?</string>
+    <string name="login_button_sign_in">Sign In</string>
+    <string name="login_no_account">New here? </string>
     <string name="login_create_account">Create account</string>
     <string name="login_forgot_password_toast">Please contact the university admin (admin@uni.com) to reset your password.</string>
     <string name="login_error_invalid">Invalid email or password. Please try again.</string>
     <string name="login_welcome_user">Welcome back, %1$s!</string>
 
-    <!-- Register Screen (Figma 2:124) -->
-    <string name="register_badge_portal">ID PORTAL</string>
-    <string name="register_breadcrumb_service">SERVICE ACCESS</string>
+    <!-- Register Screen -->
+    <string name="register_badge_portal">REGISTER</string>
+    <string name="register_breadcrumb_service">PORTAL</string>
     <string name="register_breadcrumb_dot">•</string>
-    <string name="register_breadcrumb_reg">Registration</string>
-    <string name="register_hero_title">Create Your Account</string>
-    <string name="register_hero_subtitle">Institutional student and staff service\nportal</string>
+    <string name="register_breadcrumb_reg">Sign Up</string>
+    <string name="register_hero_title">Create Account</string>
+    <string name="register_hero_subtitle">Join Campus Desk with your university email.</string>
     <string name="register_label_name">Full Name</string>
     <string name="register_badge_verified">Verified</string>
     <string name="register_hint_name">Ayesha Khan</string>
-    <string name="register_label_email">Institutional Email</string>
+    <string name="register_label_email">Email</string>
     <string name="register_hint_email">ayesha.khan@university.edu</string>
     <string name="register_label_password">Password</string>
-    <string name="register_min_chars">Min. 6 chars</string>
-    <string name="register_hint_password">SecurePass123!</string>
+    <string name="register_min_chars">Min 6 chars</string>
+    <string name="register_hint_password">At least 6 characters</string>
     <string name="register_label_confirm_password">Confirm Password</string>
     <string name="register_strength_weak">Weak</string>
     <string name="register_strength_medium">Fair</string>
     <string name="register_strength_good">Good</string>
     <string name="register_strength_strong">Strong</string>
-    <string name="register_compliance_note">By registering, you acknowledge institutional single-identity compliance with your University Registrar credentials.</string>
-    <string name="register_button_submit">REGISTER</string>
-    <string name="register_already_have_account">Already have an account?</string>
+    <string name="register_compliance_note">Use your official university email to register.</string>
+    <string name="register_button_submit">Register</string>
+    <string name="register_already_have_account">Have an account?</string>
     <string name="register_sign_in_link">Sign in</string>
-    <string name="register_footer_badge">Registrar Identity Verification Active</string>
-    <string name="register_footer_caption">Encrypted Academic Single Sign-On (SSO) Standard 2.4</string>
+    <string name="register_footer_badge">Campus Desk</string>
+    <string name="register_footer_caption">Student Portal</string>
     <string name="register_help_toast">Enter your full name, university email, and a password of at least 6 characters.</string>
     <string name="register_success_toast">Account created successfully! Please sign in.</string>
 
-    <!-- Auth Validation Errors (PRD A2) -->
+    <!-- Auth Validation Errors -->
     <string name="error_name_required">Full name is required</string>
     <string name="error_email_required">Email address is required</string>
     <string name="error_email_invalid">Enter a valid email address</string>
@@ -72,256 +72,256 @@
     <string name="error_password_mismatch">Passwords do not match</string>
     <string name="error_register_failed">Could not register account. Please try again.</string>
 
-    <!-- Dashboard Shells (Milestone M2 placeholders, expanded in M3 & M4) -->
-    <string name="user_dashboard_title">Campus Desk — Student</string>
-    <string name="user_dashboard_subtitle">Student Portal</string>
+    <!-- Dashboard Shells -->
+    <string name="user_dashboard_title">Campus Desk</string>
+    <string name="user_dashboard_subtitle">Student</string>
     <string name="user_dashboard_welcome">Signed in as Student</string>
     <string name="admin_dashboard_title">Admin Portal</string>
-    <string name="admin_dashboard_subtitle">CAMPUS DESK</string>
+    <string name="admin_dashboard_subtitle">Campus Desk</string>
     <string name="admin_dashboard_welcome">Signed in as Administrator</string>
     <string name="logout_success_toast">Signed out successfully</string>
 
-    <!-- Admin Dashboard Tabs & Header (Milestone M3 - Figma 2:1160 & 2:1946) -->
+    <!-- Admin Dashboard Tabs & Header -->
     <string name="tab_overview">Overview</string>
     <string name="tab_complaints">Complaints</string>
     <string name="tab_notices">Notices</string>
     <string name="tab_users">Users</string>
-    <string name="admin_header_total_filings">Total Logged Filings</string>
-    <string name="admin_header_recorded_count">%1$d recorded complaints</string>
-    <string name="admin_header_fy_badge">FY 2024-25</string>
-    <string name="admin_tab_placeholder_overview">Overview statistics &amp; recent filings will be added in Milestone M6.</string>
-    <string name="admin_tab_placeholder_complaints">Admin complaints management will be added in Milestone M6.</string>
-    <string name="admin_tab_placeholder_users">Registered users ListView will be added in Milestone M6.</string>
+    <string name="admin_header_total_filings">Total Filings</string>
+    <string name="admin_header_recorded_count">%1$d total complaints</string>
+    <string name="admin_header_fy_badge">Active</string>
+    <string name="admin_tab_placeholder_overview">Overview</string>
+    <string name="admin_tab_placeholder_complaints">Complaints</string>
+    <string name="admin_tab_placeholder_users">Users</string>
 
-    <!-- Admin Notices Tab (Milestone M3 - Figma 2:1946) -->
-    <string name="admin_notices_search_hint">Search circulars, department or ref…</string>
+    <!-- Admin Notices Tab -->
+    <string name="admin_notices_search_hint">Search notices…</string>
     <string name="admin_notices_chip_all">All Notices</string>
     <string name="admin_notices_chip_pinned">Pinned</string>
     <string name="admin_notices_chip_academic">Academic</string>
     <string name="admin_notices_chip_finance">Finance</string>
-    <string name="admin_notices_dept_tag">Campus Circular</string>
+    <string name="admin_notices_dept_tag">Notice</string>
     <string name="admin_notices_fab_new">New Notice</string>
-    <string name="admin_notices_empty">No notices published yet. Tap \"+ New Notice\" to post one.</string>
+    <string name="admin_notices_empty">No notices yet. Tap \"+ New Notice\" to post.</string>
     <string name="admin_notice_delete_title">Delete Notice?</string>
-    <string name="admin_notice_delete_message">Are you sure you want to permanently delete \"%1$s\"?</string>
+    <string name="admin_notice_delete_message">Permanently delete \"%1$s\"?</string>
     <string name="admin_notice_deleted_toast">Notice deleted</string>
 
-    <!-- Add / Edit Notice Activity (Milestone M3 - PRD D7) -->
-    <string name="notice_form_badge">CIRCULAR DESK</string>
-    <string name="notice_add_title">Publish New Notice</string>
-    <string name="notice_edit_title">Edit Official Notice</string>
-    <string name="notice_form_subtitle">Broadcast an official announcement to all students.</string>
-    <string name="notice_label_title">Notice Title *</string>
-    <string name="notice_hint_title">e.g. Mid-term exam timetable revised</string>
-    <string name="notice_label_content">Notice Content / Details *</string>
-    <string name="notice_hint_content">Write the full circular instructions, venue, dates, and guidelines…</string>
+    <!-- Add / Edit Notice Activity -->
+    <string name="notice_form_badge">NOTICE</string>
+    <string name="notice_add_title">New Notice</string>
+    <string name="notice_edit_title">Edit Notice</string>
+    <string name="notice_form_subtitle">Post an announcement for students.</string>
+    <string name="notice_label_title">Title *</string>
+    <string name="notice_hint_title">e.g. Mid-term exam schedule</string>
+    <string name="notice_label_content">Details *</string>
+    <string name="notice_hint_content">Write notice details, venue, and dates…</string>
     <string name="notice_btn_publish">Publish Notice</string>
     <string name="notice_btn_update">Update Notice</string>
-    <string name="notice_btn_delete">Delete This Notice</string>
+    <string name="notice_btn_delete">Delete Notice</string>
     <string name="error_notice_title_required">Notice title is required</string>
     <string name="error_notice_content_required">Notice content is required</string>
-    <string name="notice_added_toast">Notice published successfully</string>
-    <string name="notice_updated_toast">Notice updated successfully</string>
+    <string name="notice_added_toast">Notice published</string>
+    <string name="notice_updated_toast">Notice updated</string>
 
-    <!-- User Dashboard & Bottom Navigation (Milestone M4 - Figma 2:467) -->
+    <!-- User Dashboard & Bottom Navigation -->
     <string name="nav_user_notices">Notices</string>
     <string name="nav_user_new">New</string>
     <string name="nav_user_complaints">Complaints</string>
     <string name="nav_user_profile">Profile</string>
-    <string name="user_subtitle_notices">Notices Feed</string>
-    <string name="user_subtitle_new_complaint">Submit Complaint</string>
+    <string name="user_subtitle_notices">Notices</string>
+    <string name="user_subtitle_new_complaint">New Complaint</string>
     <string name="user_subtitle_my_complaints">My Complaints</string>
-    <string name="user_subtitle_profile">Student Profile</string>
-    <string name="user_tab_placeholder_new">New Complaint form (GridView + RadioGroup) will be added in Milestone M5.</string>
-    <string name="user_tab_placeholder_complaints">My Complaints list will be added in Milestone M5.</string>
-    <string name="user_tab_placeholder_profile">Student Profile will be completed in Milestone M7.</string>
+    <string name="user_subtitle_profile">Profile</string>
+    <string name="user_tab_placeholder_new">New Complaint</string>
+    <string name="user_tab_placeholder_complaints">My Complaints</string>
+    <string name="user_tab_placeholder_profile">Profile</string>
 
-    <!-- User Notices Tab & Notice Detail (Milestone M4 - Figma 2:467 & PRD U1-U4) -->
-    <string name="user_notices_urgent_tag">URGENT</string>
-    <string name="user_notices_search_hint">Search circulars, exams, schedules…</string>
-    <string name="user_notices_chip_all">All Postings</string>
-    <string name="user_notices_chip_academics">Academics &amp; Exams</string>
-    <string name="user_notices_chip_accounts">Accounts &amp; Hostel</string>
-    <string name="user_notices_chip_facilities">Campus Facilities</string>
-    <string name="user_notices_empty">No notices match your search.</string>
-    <string name="notice_detail_badge">OFFICIAL CIRCULAR</string>
-    <string name="notice_detail_heading">Campus Notice Details</string>
-    <string name="notice_detail_published_prefix">Published: %1$s</string>
-    <string name="notice_detail_verified_note">Issued by the University Registrar &amp; Campus Desk Administration.</string>
+    <!-- User Notices Tab & Notice Detail -->
+    <string name="user_notices_urgent_tag">LATEST</string>
+    <string name="user_notices_search_hint">Search notices…</string>
+    <string name="user_notices_chip_all">All</string>
+    <string name="user_notices_chip_academics">Academics</string>
+    <string name="user_notices_chip_accounts">Hostel</string>
+    <string name="user_notices_chip_facilities">Facilities</string>
+    <string name="user_notices_empty">No notices found.</string>
+    <string name="notice_detail_badge">NOTICE</string>
+    <string name="notice_detail_heading">Notice Details</string>
+    <string name="notice_detail_published_prefix">%1$s</string>
+    <string name="notice_detail_verified_note">Issued by Campus Administration.</string>
     <string name="notice_btn_share">Share Notice</string>
     <string name="notice_share_chooser">Share Notice via</string>
-    <string name="notice_share_template">%1$s (%2$s)\nPublished: %3$s\n\n%4$s\n\n— Shared via Campus Desk</string>
+    <string name="notice_share_template">%1$s (%2$s)\nDate: %3$s\n\n%4$s\n\n— Campus Desk</string>
 
-    <!-- New Complaint Tab (Milestone M5 - Figma 2:253 & PRD U5) -->
-    <string name="new_complaint_routing_badge">DIRECT ENCRYPTED ROUTING</string>
-    <string name="new_complaint_step_label">Step 1 of 2</string>
-    <string name="new_complaint_hero_title">File an Issue</string>
-    <string name="new_complaint_hero_subtitle">Dispatched directly to the dean &amp; specialized campus response team within 15 minutes.</string>
-    <string name="new_complaint_label_title">Complaint Title *</string>
-    <string name="new_complaint_label_brief">Brief summary</string>
-    <string name="new_complaint_hint_title">Room 304 Geyser not heating properly</string>
-    <string name="new_complaint_label_category">Incident Category</string>
-    <string name="new_complaint_category_selected_fmt">%1$s Selected</string>
-    <string name="cat_sub_hostel">Rooms, food &amp;\nrepairs</string>
-    <string name="cat_sub_transport">Buses, routes &amp;\npasses</string>
-    <string name="cat_sub_academic">Faculty, labs &amp;\nlectures</string>
-    <string name="cat_sub_fees">Billing &amp;\nscholarship</string>
-    <string name="cat_sub_library">Seats, books &amp;\nquiet zone</string>
-    <string name="cat_sub_general">Wi-Fi, ID &amp;\nsecurity</string>
-    <string name="new_complaint_label_urgency">Urgency Level</string>
-    <string name="new_complaint_label_description">Detailed Description *</string>
+    <!-- New Complaint Tab -->
+    <string name="new_complaint_routing_badge">NEW TICKET</string>
+    <string name="new_complaint_step_label">Form</string>
+    <string name="new_complaint_hero_title">File a Complaint</string>
+    <string name="new_complaint_hero_subtitle">Report a campus issue directly to administration.</string>
+    <string name="new_complaint_label_title">Title *</string>
+    <string name="new_complaint_label_brief">Short summary</string>
+    <string name="new_complaint_hint_title">e.g. Room 304 geyser not working</string>
+    <string name="new_complaint_label_category">Category</string>
+    <string name="new_complaint_category_selected_fmt">%1$s</string>
+    <string name="cat_sub_hostel">Rooms &amp; mess</string>
+    <string name="cat_sub_transport">Buses &amp; routes</string>
+    <string name="cat_sub_academic">Labs &amp; classes</string>
+    <string name="cat_sub_fees">Billing &amp; dues</string>
+    <string name="cat_sub_library">Books &amp; seats</string>
+    <string name="cat_sub_general">Wi-Fi &amp; campus</string>
+    <string name="new_complaint_label_urgency">Priority</string>
+    <string name="new_complaint_label_description">Description *</string>
     <string name="new_complaint_char_count_fmt">%1$d/500</string>
-    <string name="new_complaint_hint_description">Describe the exact location, issue details, and since when it has been occurring…</string>
-    <string name="new_complaint_confidential_note">Confidential to Wardens &amp; Registrar</string>
-    <string name="new_complaint_oversight_title">Central Registrar Oversight</string>
-    <string name="new_complaint_oversight_body">Logged transparently under Campus Resolution Charter #892. Escalation triggers automatically if unattended within 24 hours.</string>
+    <string name="new_complaint_hint_description">Describe the location and issue details…</string>
+    <string name="new_complaint_confidential_note">Private to Campus Admin</string>
+    <string name="new_complaint_oversight_title">Direct Review</string>
+    <string name="new_complaint_oversight_body">Your ticket is tracked until resolved.</string>
     <string name="new_complaint_btn_submit">Submit Complaint</string>
-    <string name="new_complaint_code_of_conduct">By submitting, you confirm details conform to the Student Code of Conduct.</string>
-    <string name="error_complaint_title_required">Please enter a complaint title</string>
-    <string name="error_complaint_desc_required">Please enter a detailed description</string>
-    <string name="complaint_submitted_toast">Complaint submitted successfully!</string>
+    <string name="new_complaint_code_of_conduct">Please provide accurate details.</string>
+    <string name="error_complaint_title_required">Please enter a title</string>
+    <string name="error_complaint_desc_required">Please enter a description</string>
+    <string name="complaint_submitted_toast">Complaint submitted!</string>
 
-    <!-- My Complaints Tab (Milestone M5 - Figma 2:698 & PRD U6) -->
-    <string name="my_complaints_desk_label">TICKET RESOLUTION DESK</string>
-    <string name="my_complaints_active_fmt">%1$d Active</string>
-    <string name="my_complaints_track_status">Track Status</string>
-    <string name="my_complaints_sla_met">93% Campus SLA Met</string>
-    <string name="my_complaints_stat_total">Total Filed</string>
+    <!-- My Complaints Tab -->
+    <string name="my_complaints_desk_label">MY TICKETS</string>
+    <string name="my_complaints_active_fmt">%1$d Pending</string>
+    <string name="my_complaints_track_status">Complaints</string>
+    <string name="my_complaints_sla_met">Live</string>
+    <string name="my_complaints_stat_total">Total</string>
     <string name="my_complaints_stat_pending">Pending</string>
     <string name="my_complaints_stat_resolved">Resolved</string>
-    <string name="my_complaints_search_hint">Search by ticket ID (e.g. #C-0001) or keyword…</string>
+    <string name="my_complaints_search_hint">Search complaints…</string>
     <string name="my_complaints_filter_all">All</string>
-    <string name="my_complaints_logs_heading">Complaint Logs</string>
-    <string name="my_complaints_tickets_count_fmt">%1$d tickets</string>
-    <string name="sort_by_date_newest">Sort by Date</string>
-    <string name="sort_by_priority_high">Sort by Priority</string>
-    <string name="sort_by_pending_first">Pending First</string>
-    <string name="my_complaints_empty">No complaints found. Tap the \"New\" tab below to file an issue.</string>
-    <string name="complaint_card_view_timeline">View Details</string>
-    <string name="complaint_card_priority_fmt">Priority: %1$s</string>
-    <string name="complaint_card_student_fmt">By %1$s • %2$s</string>
-    <string name="my_complaints_sla_box_title">Campus SLA Guarantee</string>
-    <string name="my_complaints_sla_box_body">Emergency &amp; water infrastructure complaints receive dispatch review within 4 working hours.</string>
-    <string name="my_complaints_escalation_title">Unresolved over 24 hrs?</string>
-    <string name="my_complaints_escalation_sub">Direct Student Dean Escalation</string>
-    <string name="my_complaints_escalation_live">24/7 Live</string>
-    <string name="my_complaints_escalation_body">Need rapid intervention for safety, medical, or electrical hazards? Call the campus emergency officer directly.</string>
+    <string name="my_complaints_logs_heading">Tickets</string>
+    <string name="my_complaints_tickets_count_fmt">%1$d</string>
+    <string name="sort_by_date_newest">Newest</string>
+    <string name="sort_by_priority_high">Priority</string>
+    <string name="sort_by_pending_first">Pending</string>
+    <string name="my_complaints_empty">No complaints yet. Tap \"New\" to file one.</string>
+    <string name="complaint_card_view_timeline">Details</string>
+    <string name="complaint_card_priority_fmt">%1$s</string>
+    <string name="complaint_card_student_fmt">%1$s • %2$s</string>
+    <string name="my_complaints_sla_box_title">Support</string>
+    <string name="my_complaints_sla_box_body">Need urgent assistance? Contact the help desk.</string>
+    <string name="my_complaints_escalation_title">Need urgent help?</string>
+    <string name="my_complaints_escalation_sub">Campus Help Desk</string>
+    <string name="my_complaints_escalation_live">24/7</string>
+    <string name="my_complaints_escalation_body">Call for urgent safety or utility issues.</string>
     <string name="my_complaints_btn_call_desk">Call Desk</string>
 
-    <!-- Complaint Detail & Edit Screens (Milestone M5 - PRD U7, U8, U9) -->
-    <string name="complaint_detail_badge">TICKET DOSSIER</string>
+    <!-- Complaint Detail & Edit Screens -->
+    <string name="complaint_detail_badge">TICKET</string>
     <string name="complaint_detail_heading">Complaint Details</string>
-    <string name="complaint_detail_filed_on_fmt">Filed on %1$s</string>
-    <string name="complaint_detail_section_desc">Incident Description</string>
-    <string name="complaint_detail_section_reply">Official Admin Reply</string>
-    <string name="complaint_detail_no_reply">No reply yet — your complaint is currently pending review by the campus desk.</string>
-    <string name="complaint_detail_resolved_locked">This complaint has been marked Resolved and is locked from editing or deletion.</string>
-    <string name="complaint_btn_edit">Edit Complaint</string>
-    <string name="complaint_btn_delete">Delete Complaint</string>
+    <string name="complaint_detail_filed_on_fmt">%1$s</string>
+    <string name="complaint_detail_section_desc">Description</string>
+    <string name="complaint_detail_section_reply">Admin Reply</string>
+    <string name="complaint_detail_no_reply">No reply yet.</string>
+    <string name="complaint_detail_resolved_locked">Resolved complaints cannot be edited or deleted.</string>
+    <string name="complaint_btn_edit">Edit</string>
+    <string name="complaint_btn_delete">Delete</string>
     <string name="complaint_delete_title">Delete Complaint?</string>
-    <string name="complaint_delete_message">Are you sure you want to delete ticket %1$s? This cannot be undone.</string>
+    <string name="complaint_delete_message">Delete ticket %1$s? This cannot be undone.</string>
     <string name="complaint_deleted_toast">Complaint deleted</string>
-    <string name="edit_complaint_badge">UPDATE TICKET</string>
-    <string name="edit_complaint_heading">Edit Pending Complaint</string>
-    <string name="edit_complaint_subtitle">Update the title, category, urgency priority, or description while pending.</string>
+    <string name="edit_complaint_badge">EDIT</string>
+    <string name="edit_complaint_heading">Edit Complaint</string>
+    <string name="edit_complaint_subtitle">Update your pending complaint details.</string>
     <string name="edit_complaint_btn_save">Save Changes</string>
-    <string name="complaint_updated_toast">Complaint updated successfully</string>
+    <string name="complaint_updated_toast">Complaint updated</string>
 
-    <!-- Admin Overview Tab (Milestone M6 - Figma 2:1160 & PRD D2) -->
-    <string name="overview_tag_req_action">REQ ACTION</string>
-    <string name="overview_tag_rate_fmt">%1$d%% RATE</string>
-    <string name="overview_tag_active">ACTIVE</string>
-    <string name="overview_tag_enrolled">ENROLLED</string>
-    <string name="overview_label_pending">Pending Review</string>
-    <string name="overview_label_resolved">Resolved Cases</string>
-    <string name="overview_label_notices">Campus Notices</string>
-    <string name="overview_label_users">Student / Faculty</string>
-    <string name="overview_sub_pending_fmt">Of %1$d total filings</string>
-    <string name="overview_sub_resolved">Target on-track</string>
-    <string name="overview_sub_notices">Broadcast live</string>
-    <string name="overview_sub_users">Verified desk</string>
-    <string name="overview_pace_title">Resolution Pace</string>
-    <string name="overview_pace_goal">Goal: 80% SLA</string>
-    <string name="overview_pace_body_fmt">%1$d of %2$d logged issues successfully processed within the 48h campus SLA bracket.</string>
-    <string name="overview_pace_resolved_fmt">Resolved (%1$d%%)</string>
-    <string name="overview_pace_pending_fmt">Pending (%1$d%%)</string>
-    <string name="overview_queue_title">Queue Attention</string>
-    <string name="overview_queue_badge">HIGH</string>
-    <string name="overview_queue_body_fmt">%1$d pending inquiries awaiting admin review &amp; response</string>
+    <!-- Admin Overview Tab -->
+    <string name="overview_tag_req_action">OPEN</string>
+    <string name="overview_tag_rate_fmt">%1$d%%</string>
+    <string name="overview_tag_active">LIVE</string>
+    <string name="overview_tag_enrolled">TOTAL</string>
+    <string name="overview_label_pending">Pending</string>
+    <string name="overview_label_resolved">Resolved</string>
+    <string name="overview_label_notices">Notices</string>
+    <string name="overview_label_users">Users</string>
+    <string name="overview_sub_pending_fmt">of %1$d total</string>
+    <string name="overview_sub_resolved">Completed</string>
+    <string name="overview_sub_notices">Published</string>
+    <string name="overview_sub_users">Registered</string>
+    <string name="overview_pace_title">Resolution Rate</string>
+    <string name="overview_pace_goal">SLA</string>
+    <string name="overview_pace_body_fmt">%1$d of %2$d complaints resolved</string>
+    <string name="overview_pace_resolved_fmt">Resolved %1$d%%</string>
+    <string name="overview_pace_pending_fmt">Pending %1$d%%</string>
+    <string name="overview_queue_title">Pending Queue</string>
+    <string name="overview_queue_badge">OPEN</string>
+    <string name="overview_queue_body_fmt">%1$d pending awaiting reply</string>
     <string name="overview_btn_post_notice">Post Notice</string>
-    <string name="overview_btn_view_queue">Manage Queue</string>
-    <string name="overview_recent_filings">Recent Filings</string>
-    <string name="overview_view_all_fmt">View All (%1$d)</string>
-    <string name="overview_recent_empty">No student complaints have been filed yet.</string>
+    <string name="overview_btn_view_queue">View Queue</string>
+    <string name="overview_recent_filings">Recent Complaints</string>
+    <string name="overview_view_all_fmt">All (%1$d)</string>
+    <string name="overview_recent_empty">No complaints filed yet.</string>
 
-    <!-- Admin Complaints Tab & Detail (Milestone M6 - Figma 2:1398 & PRD D3, D4, D5, D6, D9) -->
-    <string name="admin_complaints_live_queue">LIVE QUEUE ACTIVITY</string>
+    <!-- Admin Complaints Tab & Detail -->
+    <string name="admin_complaints_live_queue">QUEUE</string>
     <string name="admin_complaints_stat_pending">Pending</string>
     <string name="admin_complaints_stat_resolved">Resolved</string>
     <string name="admin_complaints_stat_total">Total</string>
-    <string name="admin_complaints_search_hint">Search ticket #, student name, keyword…</string>
-    <string name="admin_filter_status_label">Status:</string>
-    <string name="admin_filter_sort_label">Sort:</string>
+    <string name="admin_complaints_search_hint">Search tickets or students…</string>
+    <string name="admin_filter_status_label">Status</string>
+    <string name="admin_filter_sort_label">Sort</string>
     <string name="admin_filter_all">All</string>
     <string name="admin_filter_pending">Pending</string>
     <string name="admin_filter_resolved">Resolved</string>
-    <string name="admin_complaints_empty">No complaints match the current filter.</string>
-    <string name="admin_detail_badge">ADMIN CONSOLE</string>
-    <string name="admin_detail_heading">Review &amp; Resolve Ticket</string>
-    <string name="admin_detail_student_label">Submitted by %1$s</string>
-    <string name="admin_detail_reply_label">Official Admin Reply *</string>
-    <string name="admin_detail_reply_hint">Write your resolution response or instructions for the student…</string>
-    <string name="admin_btn_mark_resolved">Save Reply &amp; Mark Resolved</string>
-    <string name="admin_btn_mark_pending">Save Reply &amp; Keep Pending</string>
+    <string name="admin_complaints_empty">No matching complaints.</string>
+    <string name="admin_detail_badge">ADMIN</string>
+    <string name="admin_detail_heading">Review Complaint</string>
+    <string name="admin_detail_student_label">%1$s</string>
+    <string name="admin_detail_reply_label">Admin Reply *</string>
+    <string name="admin_detail_reply_hint">Write your response to the student…</string>
+    <string name="admin_btn_mark_resolved">Reply &amp; Resolve</string>
+    <string name="admin_btn_mark_pending">Keep Pending</string>
     <string name="admin_btn_delete_complaint">Delete Ticket</string>
-    <string name="error_admin_reply_required">Please write a reply before resolving the complaint</string>
-    <string name="admin_reply_saved_resolved_toast">Reply saved and complaint marked Resolved</string>
-    <string name="admin_reply_saved_pending_toast">Reply saved and status set to Pending</string>
+    <string name="error_admin_reply_required">Please write a reply first</string>
+    <string name="admin_reply_saved_resolved_toast">Marked as Resolved</string>
+    <string name="admin_reply_saved_pending_toast">Saved as Pending</string>
 
-    <!-- Admin Users Tab (ListView) (Milestone M6 - PRD Section 3 & D8) -->
-    <string name="admin_users_heading">Registered Campus Users</string>
-    <string name="admin_users_count_fmt">%1$d accounts</string>
-    <string name="admin_users_hint">Tap the trash icon or long-press a student row to delete their account and complaints.</string>
-    <string name="admin_users_empty">No registered users found.</string>
+    <!-- Admin Users Tab -->
+    <string name="admin_users_heading">Users</string>
+    <string name="admin_users_count_fmt">%1$d total</string>
+    <string name="admin_users_hint">Tap trash icon to remove a student account.</string>
+    <string name="admin_users_empty">No users found.</string>
     <string name="user_role_badge_admin">ADMIN</string>
     <string name="user_role_badge_student">STUDENT</string>
-    <string name="admin_user_protected_toast">The administrator account cannot be deleted.</string>
-    <string name="admin_user_delete_title">Delete Student Account?</string>
-    <string name="admin_user_delete_message">Delete \"%1$s\" (%2$s)? All complaints submitted by this student will also be deleted (ON DELETE CASCADE).</string>
-    <string name="admin_user_deleted_toast">User and their complaints deleted</string>
+    <string name="admin_user_protected_toast">Admin account cannot be deleted.</string>
+    <string name="admin_user_delete_title">Delete Student?</string>
+    <string name="admin_user_delete_message">Delete \"%1$s\" (%2$s) and all their complaints?</string>
+    <string name="admin_user_deleted_toast">User deleted</string>
 
-    <!-- Student Profile Tab (Milestone M7 - Figma 2:956 & PRD U10) -->
+    <!-- Student Profile Tab -->
     <string name="profile_status_active">Active</string>
-    <string name="profile_department">Computer Science &amp; Engineering</string>
-    <string name="profile_stat_live_tag">Live</string>
-    <string name="profile_stat_in_review">In Review Tickets</string>
-    <string name="profile_stat_turnaround">Est. 4h Turnaround</string>
-    <string name="profile_stat_resolved">Resolved Cases</string>
-    <string name="profile_stat_compliant">Charter Compliant</string>
-    <string name="profile_section_preferences">DESK PREFERENCES</string>
-    <string name="profile_sync_enabled">Sync Enabled</string>
+    <string name="profile_department">Student Account</string>
+    <string name="profile_stat_live_tag">Open</string>
+    <string name="profile_stat_in_review">Pending</string>
+    <string name="profile_stat_turnaround">In Review</string>
+    <string name="profile_stat_resolved">Resolved</string>
+    <string name="profile_stat_compliant">Completed</string>
+    <string name="profile_section_preferences">PREFERENCES</string>
+    <string name="profile_sync_enabled">On</string>
     <string name="profile_pref_alerts_title">Ticket Alerts</string>
-    <string name="profile_pref_alerts_sub">Instant SMS &amp; push on desk dispatch</string>
+    <string name="profile_pref_alerts_sub">Status update notifications</string>
     <string name="profile_alerts_on_toast">Ticket alerts enabled</string>
     <string name="profile_alerts_off_toast">Ticket alerts muted</string>
-    <string name="profile_section_security">SECURITY &amp; GOVERNANCE</string>
-    <string name="profile_change_password_title">Change Security PIN &amp; Pass</string>
-    <string name="profile_change_password_sub">Update your account password</string>
-    <string name="profile_charter_title">Student Rights &amp; Charter</string>
-    <string name="profile_charter_sub">2024 University Redressal Code of Conduct</string>
-    <string name="profile_charter_dialog_message">1. Every student complaint is logged with a unique tracking ID.\n2. Pending complaints can be edited or withdrawn before resolution.\n3. Official replies from the campus desk are permanently attached to your ticket record.</string>
-    <string name="profile_btn_sign_out">Sign Out of Desk</string>
-    <string name="profile_footer_version">Campus Desk Mobile v4.8.2 • Secure Session</string>
+    <string name="profile_section_security">ACCOUNT</string>
+    <string name="profile_change_password_title">Change Password</string>
+    <string name="profile_change_password_sub">Update login password</string>
+    <string name="profile_charter_title">Student Charter</string>
+    <string name="profile_charter_sub">Complaint rules &amp; rights</string>
+    <string name="profile_charter_dialog_message">1. Every complaint gets a unique ticket ID.\n2. Pending tickets can be edited or deleted.\n3. Official admin replies stay attached to your ticket.</string>
+    <string name="profile_btn_sign_out">Sign Out</string>
+    <string name="profile_footer_version">Campus Desk</string>
 
-    <!-- Change Password Dialog (Milestone M7 - PRD U10) -->
+    <!-- Change Password Dialog -->
     <string name="dialog_password_heading">Change Password</string>
     <string name="dialog_label_current_password">Current Password</string>
-    <string name="dialog_label_new_password">New Password (min. 6 chars)</string>
-    <string name="dialog_label_confirm_password">Confirm New Password</string>
+    <string name="dialog_label_new_password">New Password (min 6 chars)</string>
+    <string name="dialog_label_confirm_password">Confirm Password</string>
     <string name="error_current_password_wrong">Current password is incorrect</string>
-    <string name="password_updated_toast">Password updated successfully!</string>
+    <string name="password_updated_toast">Password updated!</string>
 
-    <!-- Complaint categories (names from the Figma design) -->
+    <!-- Complaint categories -->
     <string name="category_hostel">Hostel &amp; Mess</string>
     <string name="category_transport">Transport</string>
     <string name="category_academic">Academic</string>
