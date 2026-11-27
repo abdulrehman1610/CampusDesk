@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pill indicator used by TabLayout so the selected tab is highlighted as a full crimson pill. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/crimson" />
+    <corners android:radius="@dimen/radius_pill" />
+</shape>

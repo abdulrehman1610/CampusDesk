@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Notice Card item layout matching Figma node 2:2019 "Article".
+     Used by NoticeAdapter in both AdminNoticesFragment (with edit/delete buttons visible)
+     and NoticesFragment (user view, edit/delete buttons hidden). -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/radius_card_large"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/outline"
+    app:strokeWidth="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Left 4dp crimson accent bar (Figma 2:2038) -->
+        <View
+            android:id="@+id/viewAccentStripe"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/layoutCardBody"
+            android:layout_alignBottom="@id/layoutCardBody"
+            android:layout_alignParentStart="true"
+            android:background="@color/crimson" />
+
+        <!-- Main Card Content -->
+        <LinearLayout
+            android:id="@+id/layoutCardBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/viewAccentStripe"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <!-- Top Row: Code & Department Chips on left, Edit & Delete icon circles on right -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Notice Reference Code Pill (e.g. NTC-0001) -->
+                    <TextView
+                        android:id="@+id/tvNoticeCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chip_pink"
+                        android:fontFamily="@font/plus_jakarta_sans_bold"
+                        android:paddingStart="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/crimson_deep"
+                        android:textSize="@dimen/text_small" />
+
+                    <!-- Department Tag Pill -->
+                    <TextView
+                        android:id="@+id/tvNoticeDept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_chip_blue"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:paddingStart="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="3dp"
+                        android:text="@string/admin_notices_dept_tag"
+                        android:textColor="@color/text_muted"
+                        android:textSize="@dimen/text_small" />
+                </LinearLayout>
+
+                <!-- Admin Action Buttons: Edit & Delete (Figma 2:2029) -->
+                <LinearLayout
+                    android:id="@+id/layoutAdminNoticeActions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/btnEditNotice"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_circle_blue">
+
+                        <ImageView
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/action_edit"
+                            android:src="@drawable/ic_edit" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/btnDeleteNotice"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/bg_chip_pink">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="13dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/action_delete"
+                            android:src="@drawable/ic_trash" />
+                    </FrameLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- Date Row (Figma 2:2027) -->
+            <TextView
+                android:id="@+id/tvNoticeDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_small" />
+
+            <!-- Notice Title (Figma 2:2036) -->
+            <TextView
+                android:id="@+id/tvNoticeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_body_large" />
+
+            <!-- Short Content Preview (PRD U1 & D7) -->
+            <TextView
+                android:id="@+id/tvNoticeContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:lineSpacingExtra="2dp"
+                android:maxLines="2"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_body" />
+        </LinearLayout>
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Admin Notices Tab layout matching Figma node 2:1946 "Admin notices".
+     Includes search filter pill, count pill scroller, RecyclerView of notice cards,
+     empty-state TextView, and the "+ New Notice" ExtendedFloatingActionButton. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="20dp">
+
+        <!-- Search Bar Pill (Figma 2:1986 adapted to the tab surface) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_input_pill"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/admin_notices_search_hint"
+                android:src="@drawable/ic_search"
+                app:tint="@color/text_secondary" />
+
+            <EditText
+                android:id="@+id/etSearchAdminNotices"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:hint="@string/admin_notices_search_hint"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:textSize="@dimen/text_body" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="14dp"
+                android:contentDescription="@string/admin_notices_search_hint"
+                android:src="@drawable/ic_sliders"
+                app:tint="@color/text_secondary" />
+        </LinearLayout>
+
+        <!-- Filter & Subcategory Pill Scroller (Figma 2:2006) -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Selected "All Notices" crimson pill with dynamic count badge (Figma 2:2007) -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_button_crimson"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
+                        android:text="@string/admin_notices_chip_all"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_body" />
+
+                    <TextView
+                        android:id="@+id/tvAdminNoticeCountBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_glass_pill"
+                        android:fontFamily="@font/plus_jakarta_sans_bold"
+                        android:paddingStart="8dp"
+                        android:paddingTop="1dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="1dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_small" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_input_pill"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:text="@string/admin_notices_chip_pinned"
+                    android:textColor="@color/text_label_warm"
+                    android:textSize="@dimen/text_body" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_input_pill"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:text="@string/admin_notices_chip_academic"
+                    android:textColor="@color/text_label_warm"
+                    android:textSize="@dimen/text_body" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_input_pill"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:text="@string/admin_notices_chip_finance"
+                    android:textColor="@color/text_label_warm"
+                    android:textSize="@dimen/text_body" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- RecyclerView of Notice Cards (Figma 2:2018 & PRD D7) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAdminNotices"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="96dp" />
+
+        <!-- Empty-state TextView shown when there are no notices (PRD Section 9) -->
+        <TextView
+            android:id="@+id/tvEmptyAdminNotices"
+            style="@style/Text.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/space_xl"
+            android:text="@string/admin_notices_empty"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Floating Action Button: Crimson Pill "+ New Notice" in Bottom Right (Figma 2:1947 & PRD D7) -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabAddNotice"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/plus_jakarta_sans_semibold"
+        android:text="@string/admin_notices_fab_new"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/crimson"
+        app:icon="@drawable/ic_plus"
+        app:iconTint="@color/white" />
+
+</FrameLayout>

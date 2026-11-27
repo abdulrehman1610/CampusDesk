@@ -4,36 +4,43 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.R;
+import com.example.myapplication.adapters.AdminPagerAdapter;
 import com.example.myapplication.auth.LoginActivity;
+import com.example.myapplication.database.DatabaseHelper;
 import com.example.myapplication.utils.Constants;
 import com.example.myapplication.utils.SessionManager;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 /**
- * AdminDashboardActivity is the home screen for the administrator.
- * In Milestone M2 it verifies the "admin" role, displays the admin session info,
- * and supports Logout from the Toolbar options menu (PRD A6).
- * In Milestone M3 it will host TabLayout + ViewPager2 with 4 fragments.
+ * AdminDashboardActivity hosts the 4 admin tabs (Overview, Complaints, Notices, Users)
+ * using TabLayout + ViewPager2 + AdminPagerAdapter (FragmentStateAdapter) as required by PRD D1.
  */
 public class AdminDashboardActivity extends AppCompatActivity {
 
     private SessionManager sessionManager;
+    private DatabaseHelper dbHelper;
+    private TextView tvHeaderComplaintCount;
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager;
 
     /**
-     * Checks the admin session and role, sets up the Toolbar, and binds the M2 shell views.
+     * Verifies the admin session, sets up the Toolbar, and connects TabLayout to ViewPager2.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sessionManager = new SessionManager(this);
+        dbHelper = new DatabaseHelper(this);
 
         // Role check required by PRD Section 4: only "admin" role can open this dashboard
         if (!sessionManager.isLoggedIn() || !Constants.ROLE_ADMIN.equals(sessionManager.getRole())) {
@@ -46,14 +53,60 @@ public class AdminDashboardActivity extends AppCompatActivity {
         MaterialToolbar toolbar = findViewById(R.id.toolbarAdmin);
         setSupportActionBar(toolbar);
 
-        TextView tvWelcome = findViewById(R.id.tvAdminWelcome);
-        TextView tvEmail = findViewById(R.id.tvAdminEmail);
-        Button btnLogout = findViewById(R.id.btnAdminLogout);
+        tvHeaderComplaintCount = findViewById(R.id.tvHeaderComplaintCount);
+        tabLayout = findViewById(R.id.tabLayoutAdmin);
+        viewPager = findViewById(R.id.viewPagerAdmin);
 
-        tvWelcome.setText(getString(R.string.login_welcome_user, sessionManager.getName()));
-        tvEmail.setText(sessionManager.getEmail());
+        setupViewPagerAndTabs();
+        updateHeaderSummary();
+    }
 
-        btnLogout.setOnClickListener(v -> performLogout());
+    /**
+     * Refreshes the header complaint count whenever the admin returns to this activity.
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateHeaderSummary();
+    }
+
+    /**
+     * Connects ViewPager2 to AdminPagerAdapter and links TabLayout titles via TabLayoutMediator.
+     */
+    private void setupViewPagerAndTabs() {
+        AdminPagerAdapter pagerAdapter = new AdminPagerAdapter(this);
+        viewPager.setAdapter(pagerAdapter);
+
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            if (position == AdminPagerAdapter.TAB_OVERVIEW) {
+                tab.setText(R.string.tab_overview);
+            } else if (position == AdminPagerAdapter.TAB_COMPLAINTS) {
+                tab.setText(R.string.tab_complaints);
+            } else if (position == AdminPagerAdapter.TAB_NOTICES) {
+                tab.setText(R.string.tab_notices);
+            } else if (position == AdminPagerAdapter.TAB_USERS) {
+                tab.setText(R.string.tab_users);
+            }
+        }).attach();
+    }
+
+    /**
+     * Switches ViewPager2 to the specified tab index (used by Overview shortcuts in M6).
+     */
+    public void switchToTab(int tabIndex) {
+        if (viewPager != null && tabIndex >= 0 && tabIndex < AdminPagerAdapter.TAB_COUNT) {
+            viewPager.setCurrentItem(tabIndex, true);
+        }
+    }
+
+    /**
+     * Updates the header micro-bar with the total number of recorded complaints from SQLite.
+     */
+    public void updateHeaderSummary() {
+        if (tvHeaderComplaintCount != null && dbHelper != null) {
+            int totalComplaints = dbHelper.getComplaintCount();
+            tvHeaderComplaintCount.setText(getString(R.string.admin_header_recorded_count, totalComplaints));
+        }
     }
 
     /**

@@ -118,3 +118,33 @@ Runs first when the app icon is tapped (`MAIN` / `LAUNCHER` intent-filter in `An
 Dashboard shells for students and admins. Each dashboard checks `sessionManager.getRole()` inside `onCreate()` (redirecting to `LoginActivity` if the role does not match) and attaches a `MaterialToolbar` that inflates `menu_toolbar.xml` (`onCreateOptionsMenu` / `onOptionsItemSelected`) so tapping **Logout** clears `SharedPreferences` and returns to `LoginActivity`.
 - **Q:** How is the Admin section protected from normal student users?
   **A:** At two levels: first, `LoginActivity` checks `user.getRole()` (`"user"` vs `"admin"`) to decide which dashboard to open; second, `AdminDashboardActivity.onCreate()` verifies `Constants.ROLE_ADMIN.equals(sessionManager.getRole())` and immediately redirects back to `LoginActivity` if it does not match.
+
+
+---
+
+## Milestone M3: Admin Shell + Notices CRUD
+
+### `admin/AdminDashboardActivity.java` and `res/layout/activity_admin_dashboard.xml`
+Implements the Admin Portal shell with the curved Midnight-to-Crimson header, live recorded-complaints micro-bar, `MaterialToolbar` Logout menu, and a pill-styled `TabLayout` connected to a `ViewPager2` via `TabLayoutMediator`.
+- **Q:** How do `TabLayout` and `ViewPager2` stay synchronized when the user swipes or taps a tab?
+  **A:** We use `TabLayoutMediator(tabLayout, viewPager, (tab, position) -> ...)`. Calling `.attach()` sets the title of each tab and automatically scrolls `TabLayout` when `ViewPager2` is swiped (and vice versa).
+
+### `adapters/AdminPagerAdapter.java`
+Extends `FragmentStateAdapter` to supply the 4 fragments for `ViewPager2`: `OverviewFragment` (0), `AdminComplaintsFragment` (1), `AdminNoticesFragment` (2), and `UsersFragment` (3).
+- **Q:** What does `FragmentStateAdapter` do with `ViewPager2`?
+  **A:** It manages the lifecycle of each tab's `Fragment`, creating a fragment only when needed and saving/restoring its state when the user swipes across tabs so memory is used efficiently.
+
+### `adapters/NoticeAdapter.java` and `res/layout/item_notice.xml`
+A `RecyclerView.Adapter` with a static `NoticeViewHolder` that binds each `Notice` object (`getNoticeCode()`, `getCreatedDate()`, `getTitle()`, `getContent()`) to a MaterialCardView with a 4dp crimson left accent bar. It accepts an `isAdmin` boolean so the same adapter and card layout can show Edit/Delete icon buttons for the Admin and hide them for Students in Milestone M4.
+- **Q:** Why is `RecyclerView` more efficient than an old `ListView` without a ViewHolder?
+  **A:** `RecyclerView` enforces the **ViewHolder pattern** (`findViewById` runs only once when a row view is created in `onCreateViewHolder`, not on every scroll frame) and recycles off-screen item views in `onBindViewHolder`.
+
+### `admin/fragments/AdminNoticesFragment.java` and `res/layout/fragment_admin_notices.xml`
+Displays all notices from SQLite in a `RecyclerView`, updates the total badge count, filters notices live as the admin types in the search bar, shows an empty-state `TextView` when there are no matches, refreshes automatically in `onResume()`, launches `AddEditNoticeActivity` from the `+ New Notice` `ExtendedFloatingActionButton`, and confirms deletions with an `AlertDialog`.
+- **Q:** Why do we call `loadNotices()` inside `onResume()` in `AdminNoticesFragment`?
+  **A:** When the admin opens `AddEditNoticeActivity` to add or edit a notice and then finishes that activity, `AdminNoticesFragment` resumes. Reloading in `onResume()` ensures the `RecyclerView` immediately reflects the new or updated notice from SQLite.
+
+### `admin/AddEditNoticeActivity.java` and `res/layout/activity_add_edit_notice.xml`
+A single Activity used for both publishing a new notice and editing an existing notice (PRD D7). It reads `Constants.EXTRA_MODE` (`"add"` or `"edit"`) and `Constants.EXTRA_NOTICE_ID` from `getIntent()`. In edit mode it loads the existing notice from `DatabaseHelper.getNoticeById(noticeId)`, pre-fills the `EditText` fields, changes the button label to **Update Notice**, and reveals a **Delete This Notice** button.
+- **Q:** How does one Activity handle both "Add Notice" and "Edit Notice"?
+  **A:** The caller passes `intent.putExtra(Constants.EXTRA_MODE, Constants.MODE_EDIT)` and `intent.putExtra(Constants.EXTRA_NOTICE_ID, notice.getId())`. In `onCreate()`, `AddEditNoticeActivity` reads those extras with `getStringExtra` and `getIntExtra` to decide whether to call `dbHelper.addNotice(...)` or `dbHelper.updateNotice(...)`.

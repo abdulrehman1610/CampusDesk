@@ -81,6 +81,48 @@
     <string name="admin_dashboard_welcome">Signed in as Administrator</string>
     <string name="logout_success_toast">Signed out successfully</string>
 
+    <!-- Admin Dashboard Tabs & Header (Milestone M3 - Figma 2:1160 & 2:1946) -->
+    <string name="tab_overview">Overview</string>
+    <string name="tab_complaints">Complaints</string>
+    <string name="tab_notices">Notices</string>
+    <string name="tab_users">Users</string>
+    <string name="admin_header_total_filings">Total Logged Filings</string>
+    <string name="admin_header_recorded_count">%1$d recorded complaints</string>
+    <string name="admin_header_fy_badge">FY 2024-25</string>
+    <string name="admin_tab_placeholder_overview">Overview statistics &amp; recent filings will be added in Milestone M6.</string>
+    <string name="admin_tab_placeholder_complaints">Admin complaints management will be added in Milestone M6.</string>
+    <string name="admin_tab_placeholder_users">Registered users ListView will be added in Milestone M6.</string>
+
+    <!-- Admin Notices Tab (Milestone M3 - Figma 2:1946) -->
+    <string name="admin_notices_search_hint">Search circulars, department or ref…</string>
+    <string name="admin_notices_chip_all">All Notices</string>
+    <string name="admin_notices_chip_pinned">Pinned</string>
+    <string name="admin_notices_chip_academic">Academic</string>
+    <string name="admin_notices_chip_finance">Finance</string>
+    <string name="admin_notices_dept_tag">Campus Circular</string>
+    <string name="admin_notices_fab_new">New Notice</string>
+    <string name="admin_notices_empty">No notices published yet. Tap \"+ New Notice\" to post one.</string>
+    <string name="admin_notice_delete_title">Delete Notice?</string>
+    <string name="admin_notice_delete_message">Are you sure you want to permanently delete \"%1$s\"?</string>
+    <string name="admin_notice_deleted_toast">Notice deleted</string>
+
+    <!-- Add / Edit Notice Activity (Milestone M3 - PRD D7) -->
+    <string name="notice_form_badge">CIRCULAR DESK</string>
+    <string name="notice_add_title">Publish New Notice</string>
+    <string name="notice_edit_title">Edit Official Notice</string>
+    <string name="notice_form_subtitle">Broadcast an official announcement to all students.</string>
+    <string name="notice_label_title">Notice Title *</string>
+    <string name="notice_hint_title">e.g. Mid-term exam timetable revised</string>
+    <string name="notice_label_content">Notice Content / Details *</string>
+    <string name="notice_hint_content">Write the full circular instructions, venue, dates, and guidelines…</string>
+    <string name="notice_btn_publish">Publish Notice</string>
+    <string name="notice_btn_update">Update Notice</string>
+    <string name="notice_btn_delete">Delete This Notice</string>
+    <string name="error_notice_title_required">Notice title is required</string>
+    <string name="error_notice_content_required">Notice content is required</string>
+    <string name="notice_added_toast">Notice published successfully</string>
+    <string name="notice_updated_toast">Notice updated successfully</string>
+
     <!-- Complaint categories (names from the Figma design) -->
     <string name="category_hostel">Hostel &amp; Mess</string>
     <string name="category_transport">Transport</string>
