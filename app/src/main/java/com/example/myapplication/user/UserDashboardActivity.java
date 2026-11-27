@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
@@ -53,6 +54,15 @@ public class UserDashboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         bottomNav = findViewById(R.id.bottomNavUser);
+        // Prevent Material 3 BottomNavigationView from adding extra bottom system-bar padding
+        // inside our fixed-height floating pill dock (which would clip the icons and labels).
+        bottomNav.setItemIconTintList(getColorStateList(R.color.bottom_nav_color));
+        bottomNav.setItemTextColor(getColorStateList(R.color.bottom_nav_color));
+        ViewCompat.setOnApplyWindowInsetsListener(bottomNav, (v, insets) -> {
+            v.setPadding(v.getPaddingLeft(), 0, v.getPaddingRight(), 0);
+            return insets;
+        });
+
         setupBottomNavigation();
 
         if (savedInstanceState == null) {

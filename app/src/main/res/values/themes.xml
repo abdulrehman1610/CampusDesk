@@ -24,8 +24,9 @@
         <item name="android:fontFamily">@font/plus_jakarta_sans</item>
         <item name="fontFamily">@font/plus_jakarta_sans</item>
 
-        <!-- Status bar uses light icons on top of the dark header gradient -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- Status bar uses light icons on top of the dark midnight header -->
+        <item name="android:statusBarColor">@color/midnight</item>
+        <item name="android:navigationBarColor">@color/midnight</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
 

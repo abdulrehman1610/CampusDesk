@@ -40,6 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/transparent"
+            android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.Material3.Light"
             app:subtitle="@string/user_subtitle_notices"
             app:subtitleTextColor="@color/white"
             app:title="@string/admin_dashboard_subtitle"
@@ -54,30 +56,33 @@
         android:layout_below="@id/headerUserBar" />
 
     <!-- Floating Midnight Bottom Navigation Dock (Figma 2:676) -->
-    <FrameLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavUser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="68dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/bg_bottom_dock"
         android:elevation="12dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavUser"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottom_dock_height"
-            android:background="@color/transparent"
-            app:elevation="0dp"
-            app:itemActiveIndicatorStyle="@null"
-            app:itemIconSize="18dp"
-            app:itemIconTint="@color/bottom_nav_color"
-            app:itemTextColor="@color/bottom_nav_color"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/menu_bottom_user" />
-    </FrameLayout>
+        android:minHeight="60dp"
+        android:paddingStart="6dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="6dp"
+        android:paddingBottom="4dp"
+        app:backgroundTint="@null"
+        app:compatShadowEnabled="false"
+        app:elevation="0dp"
+        app:itemActiveIndicatorStyle="@null"
+        app:itemBackground="@drawable/bg_bottom_nav_item"
+        app:itemIconSize="22dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemPaddingBottom="8dp"
+        app:itemPaddingTop="8dp"
+        app:itemRippleColor="@color/transparent"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_bottom_user" />
 
 </RelativeLayout>

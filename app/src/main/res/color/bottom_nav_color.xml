@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Icon / label color for bottom navigation items: white when selected, faded white otherwise. -->
+<!-- Icon / label color for bottom navigation items:
+     Selected (checked or selected) = bright white; unselected = light blue-grey (#CDDCED). -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:color="@color/white" android:state_checked="true" />
-    <item android:color="@color/text_on_dark_muted" />
+    <item android:color="@color/white" android:state_selected="true" />
+    <item android:color="@color/outline" />
 </selector>

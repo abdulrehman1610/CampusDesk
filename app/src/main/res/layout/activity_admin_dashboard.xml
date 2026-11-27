@@ -26,6 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
+            android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.Material3.Light"
             app:subtitle="@string/admin_dashboard_subtitle"
             app:subtitleTextColor="@color/pink_soft"
             app:title="@string/admin_dashboard_title"
@@ -119,18 +121,18 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayoutAdmin"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="48dp"
             android:background="@drawable/bg_input_pill"
+            android:padding="4dp"
+            app:tabBackground="@drawable/bg_tab_item_selector"
             app:tabGravity="fill"
-            app:tabIndicator="@drawable/bg_tab_indicator_pill"
-            app:tabIndicatorAnimationMode="elastic"
-            app:tabIndicatorColor="@color/crimson"
-            app:tabIndicatorFullWidth="true"
-            app:tabIndicatorGravity="stretch"
+            app:tabIndicatorHeight="0dp"
             app:tabMode="fixed"
+            app:tabPaddingEnd="6dp"
+            app:tabPaddingStart="6dp"
             app:tabRippleColor="@color/transparent"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/text_secondary" />
+            app:tabTextColor="@color/text_primary" />
     </FrameLayout>
 
     <!-- ViewPager2 hosting the 4 Admin fragments (Overview, Complaints, Notices, Users) -->
