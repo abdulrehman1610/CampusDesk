@@ -4,31 +4,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
 import com.example.myapplication.auth.LoginActivity;
+import com.example.myapplication.user.fragments.MyComplaintsFragment;
+import com.example.myapplication.user.fragments.NewComplaintFragment;
+import com.example.myapplication.user.fragments.NoticesFragment;
+import com.example.myapplication.user.fragments.ProfileFragment;
 import com.example.myapplication.utils.Constants;
 import com.example.myapplication.utils.SessionManager;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
- * UserDashboardActivity is the home screen for logged-in students.
- * In Milestone M2 it verifies the "user" role, displays the logged-in student's info,
- * and supports Logout from the Toolbar options menu (PRD A6).
- * In Milestone M4 it will host the 4 bottom-navigation fragments.
+ * UserDashboardActivity is the home screen for logged-in students (PRD Section 3 & 7).
+ * It uses a floating BottomNavigationView dock and FragmentManager transactions to swap between
+ * NoticesFragment, NewComplaintFragment, MyComplaintsFragment, and ProfileFragment.
  */
 public class UserDashboardActivity extends AppCompatActivity {
 
     private SessionManager sessionManager;
+    private MaterialToolbar toolbar;
+    private BottomNavigationView bottomNav;
 
     /**
-     * Checks the user session and role, sets up the Toolbar, and binds the M2 shell views.
+     * Verifies the student role, sets up the Toolbar and BottomNavigationView,
+     * and loads NoticesFragment as the default home tab.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +49,55 @@ public class UserDashboardActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_user_dashboard);
 
-        MaterialToolbar toolbar = findViewById(R.id.toolbarUser);
+        toolbar = findViewById(R.id.toolbarUser);
         setSupportActionBar(toolbar);
 
-        TextView tvWelcome = findViewById(R.id.tvUserWelcome);
-        TextView tvEmail = findViewById(R.id.tvUserEmail);
-        Button btnLogout = findViewById(R.id.btnUserLogout);
+        bottomNav = findViewById(R.id.bottomNavUser);
+        setupBottomNavigation();
 
-        tvWelcome.setText(getString(R.string.login_welcome_user, sessionManager.getName()));
-        tvEmail.setText(sessionManager.getEmail());
+        if (savedInstanceState == null) {
+            bottomNav.setSelectedItemId(R.id.nav_notices);
+        }
+    }
 
-        btnLogout.setOnClickListener(v -> performLogout());
+    /**
+     * Listens for BottomNavigationView item selections and swaps the displayed Fragment.
+     */
+    private void setupBottomNavigation() {
+        bottomNav.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            Fragment selectedFragment;
+
+            if (itemId == R.id.nav_new_complaint) {
+                selectedFragment = new NewComplaintFragment();
+                toolbar.setSubtitle(R.string.user_subtitle_new_complaint);
+            } else if (itemId == R.id.nav_my_complaints) {
+                selectedFragment = new MyComplaintsFragment();
+                toolbar.setSubtitle(R.string.user_subtitle_my_complaints);
+            } else if (itemId == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
+                toolbar.setSubtitle(R.string.user_subtitle_profile);
+            } else {
+                selectedFragment = new NoticesFragment();
+                toolbar.setSubtitle(R.string.user_subtitle_notices);
+            }
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainerUser, selectedFragment)
+                    .commit();
+            return true;
+        });
+    }
+
+    /**
+     * Public helper that lets child fragments switch the active bottom navigation tab
+     * (for example, switching to My Complaints after submitting a New Complaint in Milestone M5).
+     */
+    public void navigateToTab(int menuItemId) {
+        if (bottomNav != null) {
+            bottomNav.setSelectedItemId(menuItemId);
+        }
     }
 
     /**
@@ -80,7 +124,7 @@ public class UserDashboardActivity extends AppCompatActivity {
     /**
      * Clears the saved session in SharedPreferences and returns to LoginActivity.
      */
-    private void performLogout() {
+    public void performLogout() {
         sessionManager.logout();
         Toast.makeText(this, R.string.logout_success_toast, Toast.LENGTH_SHORT).show();
         redirectToLogin();

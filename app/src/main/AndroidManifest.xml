@@ -40,6 +40,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".user.NoticeDetailActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".admin.AdminDashboardActivity"
             android:exported="false" />
 

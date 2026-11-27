@@ -123,6 +123,35 @@
     <string name="notice_added_toast">Notice published successfully</string>
     <string name="notice_updated_toast">Notice updated successfully</string>
 
+    <!-- User Dashboard & Bottom Navigation (Milestone M4 - Figma 2:467) -->
+    <string name="nav_user_notices">Notices</string>
+    <string name="nav_user_new">New</string>
+    <string name="nav_user_complaints">Complaints</string>
+    <string name="nav_user_profile">Profile</string>
+    <string name="user_subtitle_notices">Notices Feed</string>
+    <string name="user_subtitle_new_complaint">Submit Complaint</string>
+    <string name="user_subtitle_my_complaints">My Complaints</string>
+    <string name="user_subtitle_profile">Student Profile</string>
+    <string name="user_tab_placeholder_new">New Complaint form (GridView + RadioGroup) will be added in Milestone M5.</string>
+    <string name="user_tab_placeholder_complaints">My Complaints list will be added in Milestone M5.</string>
+    <string name="user_tab_placeholder_profile">Student Profile will be completed in Milestone M7.</string>
+
+    <!-- User Notices Tab & Notice Detail (Milestone M4 - Figma 2:467 & PRD U1-U4) -->
+    <string name="user_notices_urgent_tag">URGENT</string>
+    <string name="user_notices_search_hint">Search circulars, exams, schedules…</string>
+    <string name="user_notices_chip_all">All Postings</string>
+    <string name="user_notices_chip_academics">Academics &amp; Exams</string>
+    <string name="user_notices_chip_accounts">Accounts &amp; Hostel</string>
+    <string name="user_notices_chip_facilities">Campus Facilities</string>
+    <string name="user_notices_empty">No notices match your search.</string>
+    <string name="notice_detail_badge">OFFICIAL CIRCULAR</string>
+    <string name="notice_detail_heading">Campus Notice Details</string>
+    <string name="notice_detail_published_prefix">Published: %1$s</string>
+    <string name="notice_detail_verified_note">Issued by the University Registrar &amp; Campus Desk Administration.</string>
+    <string name="notice_btn_share">Share Notice</string>
+    <string name="notice_share_chooser">Share Notice via</string>
+    <string name="notice_share_template">%1$s (%2$s)\nPublished: %3$s\n\n%4$s\n\n— Shared via Campus Desk</string>
+
     <!-- Complaint categories (names from the Figma design) -->
     <string name="category_hostel">Hostel &amp; Mess</string>
     <string name="category_transport">Transport</string>

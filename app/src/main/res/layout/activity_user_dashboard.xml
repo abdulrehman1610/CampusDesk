@@ -1,67 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- User Dashboard shell (Milestone M2: Toolbar with Logout menu + user welcome card;
-     Milestone M4 adds BottomNavigationView and Fragments). -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- User Dashboard layout matching Figma node 2:467 header + floating bottom dock.
+     Uses MaterialToolbar (Logout menu), a FrameLayout fragment container,
+     and a floating rounded midnight BottomNavigationView dock (PRD Section 3 & 7). -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface"
-    android:orientation="vertical">
+    android:background="@color/surface">
 
-    <!-- Top Toolbar with Logout menu item (PRD A6) -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarUser"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/bg_header_gradient"
-        app:subtitle="@string/user_dashboard_subtitle"
-        app:subtitleTextColor="@color/text_on_dark_muted"
-        app:title="@string/app_name"
-        app:titleTextColor="@color/white" />
-
-    <!-- Placeholder body until Milestone M4 replaces it with Fragment container + BottomNavigationView -->
+    <!-- Top Midnight Header Bar with Crimson Logo Badge & Toolbar Logout Menu (Figma 2:658) -->
     <LinearLayout
+        android:id="@+id/headerUserBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/midnight_soft"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp">
+
+        <FrameLayout
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_circle_crimson">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_cap_white" />
+        </FrameLayout>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            app:subtitle="@string/user_subtitle_notices"
+            app:subtitleTextColor="@color/white"
+            app:title="@string/admin_dashboard_subtitle"
+            app:titleTextColor="@color/pink_soft" />
+    </LinearLayout>
+
+    <!-- Fragment Container swapped by FragmentManager transactions -->
+    <FrameLayout
+        android:id="@+id/fragmentContainerUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/screen_padding">
+        android:layout_below="@id/headerUserBar" />
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Card.List"
+    <!-- Floating Midnight Bottom Navigation Dock (Figma 2:676) -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_bottom_dock"
+        android:elevation="12dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavUser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/bottom_dock_height"
+            android:background="@color/transparent"
+            app:elevation="0dp"
+            app:itemActiveIndicatorStyle="@null"
+            app:itemIconSize="18dp"
+            app:itemIconTint="@color/bottom_nav_color"
+            app:itemTextColor="@color/bottom_nav_color"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_bottom_user" />
+    </FrameLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/space_l">
-
-                <TextView
-                    android:id="@+id/tvUserWelcome"
-                    style="@style/Text.Heading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/user_dashboard_welcome" />
-
-                <TextView
-                    android:id="@+id/tvUserEmail"
-                    style="@style/Text.Secondary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/user_dashboard_subtitle" />
-
-                <Button
-                    android:id="@+id/btnUserLogout"
-                    style="@style/Button.Danger"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/action_logout" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

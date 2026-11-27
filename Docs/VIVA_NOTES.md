@@ -148,3 +148,23 @@ Displays all notices from SQLite in a `RecyclerView`, updates the total badge co
 A single Activity used for both publishing a new notice and editing an existing notice (PRD D7). It reads `Constants.EXTRA_MODE` (`"add"` or `"edit"`) and `Constants.EXTRA_NOTICE_ID` from `getIntent()`. In edit mode it loads the existing notice from `DatabaseHelper.getNoticeById(noticeId)`, pre-fills the `EditText` fields, changes the button label to **Update Notice**, and reveals a **Delete This Notice** button.
 - **Q:** How does one Activity handle both "Add Notice" and "Edit Notice"?
   **A:** The caller passes `intent.putExtra(Constants.EXTRA_MODE, Constants.MODE_EDIT)` and `intent.putExtra(Constants.EXTRA_NOTICE_ID, notice.getId())`. In `onCreate()`, `AddEditNoticeActivity` reads those extras with `getStringExtra` and `getIntExtra` to decide whether to call `dbHelper.addNotice(...)` or `dbHelper.updateNotice(...)`.
+
+
+---
+
+## Milestone M4: User Shell + Notices (BottomNavigationView, Notices Feed, Detail, Share Intent)
+
+### `user/UserDashboardActivity.java`, `res/layout/activity_user_dashboard.xml`, and `res/menu/menu_bottom_user.xml`
+Implements the student dashboard shell matching the Figma header and floating midnight bottom dock (`Notices`, `New`, `Complaints`, `Profile`). When the student taps a bottom navigation item, `UserDashboardActivity` updates the Toolbar subtitle and runs a `FragmentManager` transaction (`getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerUser, selectedFragment).commit()`) to swap the active screen.
+- **Q:** What is the difference between an `Activity` and a `Fragment`, and why do we use Fragments for the bottom navigation tabs?
+  **A:** An `Activity` is a full standalone screen with its own window, while a `Fragment` is a reusable sub-screen that lives inside an Activity. Using Fragments lets the top Toolbar and bottom navigation dock stay in place while only the middle content area swaps, which is faster and smoother than launching 4 separate Activities.
+
+### `user/fragments/NoticesFragment.java` and `res/layout/fragment_notices.xml`
+Implements the Figma `Notices (Crimson Dynamic)` screen (`2:467`). It shows the **Urgent Broadcast** banner for the most recent notice, a glass search bar (`TextWatcher`) that filters notices live by title/content/code (PRD U4), an empty-state message when no notices match (PRD U11), and a `RecyclerView` powered by `NoticeAdapter` (`isAdmin = false`). Tapping any notice card opens `NoticeDetailActivity` with `EXTRA_NOTICE_ID`.
+- **Q:** How does `NoticesFragment` pass the selected notice to `NoticeDetailActivity`?
+  **A:** Using an **explicit Intent** with an extra: `Intent intent = new Intent(requireContext(), NoticeDetailActivity.class); intent.putExtra(Constants.EXTRA_NOTICE_ID, notice.getId()); startActivity(intent);`.
+
+### `user/NoticeDetailActivity.java` and `res/layout/activity_notice_detail.xml`
+Reads `Constants.EXTRA_NOTICE_ID` via `getIntent().getIntExtra(...)`, loads the full `Notice` from `DatabaseHelper.getNoticeById(noticeId)`, displays its code, date, full title, and full content, and provides a **Share Notice** button that launches Android's system share sheet using an **implicit Intent** (`Intent.ACTION_SEND`).
+- **Q:** What is the difference between an explicit Intent and an implicit Intent? Give an example from this app.
+  **A:** An **explicit Intent** names the exact target Activity class inside our app (e.g., `new Intent(requireContext(), NoticeDetailActivity.class)`). An **implicit Intent** declares a general action and data type (e.g., `new Intent(Intent.ACTION_SEND)` with `type = "text/plain"` and `EXTRA_TEXT`) so Android shows a chooser sheet of external apps (WhatsApp, Gmail, Messages) that can handle sharing text.
