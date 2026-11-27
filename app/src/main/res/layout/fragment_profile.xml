@@ -1,17 +1,561 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Placeholder layout for Profile tab in Milestone M4 (completed in Milestone M7). -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Student Profile Tab layout matching Figma node 2:956 "Profile (Crimson Dynamic)" & PRD U10.
+     Displays the student's initials avatar with verified seal, name, email, department,
+     In Review & Resolved ticket stat cards, Ticket Alerts switch, Change Password row,
+     Student Rights Charter row, and Sign Out of Desk button. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/surface"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="@dimen/screen_padding">
+    android:fillViewport="true">
 
-    <TextView
-        style="@style/Text.Secondary"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/user_tab_placeholder_profile" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:paddingBottom="96dp">
+
+        <!-- Midnight Slab Header with Avatar Module (Figma 2:959) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/midnight_soft"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="44dp">
+
+            <!-- 96dp Avatar Circle with Crimson Ring & Verified Check Badge (Figma 2:964) -->
+            <FrameLayout
+                android:layout_width="96dp"
+                android:layout_height="96dp">
+
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:background="@drawable/bg_circle_crimson"
+                    android:padding="4dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_circle_blue">
+
+                        <TextView
+                            android:id="@+id/tvProfileInitials"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                            android:textColor="@color/midnight"
+                            android:textSize="@dimen/text_title_large" />
+                    </FrameLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/bg_circle_crimson">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/profile_status_active"
+                        android:src="@drawable/ic_profile_verified" />
+                </FrameLayout>
+            </FrameLayout>
+
+            <!-- Student Name + Active Badge (Figma 2:971) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_urgent_banner"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:paddingStart="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/profile_status_active"
+                    android:textColor="@color/pink_soft"
+                    android:textSize="@dimen/text_caption" />
+            </LinearLayout>
+
+            <!-- Student Email (Figma 2:977 & PRD U10) -->
+            <TextView
+                android:id="@+id/tvProfileEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:textColor="@color/outline"
+                android:textSize="@dimen/text_body_large" />
+
+            <!-- Department Line (Figma 2:980) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="12dp"
+                    android:contentDescription="@string/profile_department"
+                    android:src="@drawable/ic_dept_building" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="@string/profile_department"
+                    android:textColor="@color/chip_blue"
+                    android:textSize="@dimen/text_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Curved Sheet Content Container (Figma 2:986) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-24dp"
+            android:background="@drawable/bg_sheet_rounded"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="24dp">
+
+            <!-- Live Case Resolution Stats Grid (Figma 2:1003) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <!-- Card 1: In Review Tickets -->
+                <LinearLayout
+                    android:id="@+id/cardProfileInReview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_metric_blue"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <FrameLayout
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentStart="true"
+                            android:background="@drawable/bg_circle_blue">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="17dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/profile_stat_in_review"
+                                android:src="@drawable/ic_hourglass" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_chip_blue"
+                            android:fontFamily="@font/plus_jakarta_sans_semibold"
+                            android:paddingStart="8dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="2dp"
+                            android:text="@string/profile_stat_live_tag"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_small" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tvProfilePendingCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_title" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/plus_jakarta_sans_regular"
+                        android:text="@string/profile_stat_in_review"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/plus_jakarta_sans_bold"
+                        android:text="@string/profile_stat_turnaround"
+                        android:textColor="@color/crimson_dark"
+                        android:textSize="@dimen/text_tiny" />
+                </LinearLayout>
+
+                <!-- Card 2: Resolved Cases -->
+                <LinearLayout
+                    android:id="@+id/cardProfileResolved"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_metric_pink"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <FrameLayout
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentStart="true"
+                            android:background="@drawable/bg_circle_crimson">
+
+                            <ImageView
+                                android:layout_width="17dp"
+                                android:layout_height="17dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/profile_stat_resolved"
+                                android:src="@drawable/ic_resolved_white" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvProfileResolvedRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_chip_pink"
+                            android:fontFamily="@font/plus_jakarta_sans_bold"
+                            android:paddingStart="8dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="2dp"
+                            android:textColor="@color/crimson_dark"
+                            android:textSize="@dimen/text_small" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tvProfileResolvedCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_title" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/plus_jakarta_sans_regular"
+                        android:text="@string/profile_stat_resolved"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
+                        android:text="@string/profile_stat_compliant"
+                        android:textColor="@color/text_label_warm"
+                        android:textSize="@dimen/text_tiny" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- DESK PREFERENCES Section (Figma 2:1048) -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:text="@string/profile_section_preferences"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="@string/profile_sync_enabled"
+                    android:textColor="@color/crimson_dark"
+                    android:textSize="@dimen/text_caption" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_white_box"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:id="@+id/framePrefBell"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_circle_blue">
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/profile_pref_alerts_title"
+                        android:src="@drawable/ic_pref_bell" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@id/switchTicketAlerts"
+                    android:layout_toEndOf="@id/framePrefBell"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
+                        android:text="@string/profile_pref_alerts_title"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_body" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/plus_jakarta_sans_regular"
+                        android:text="@string/profile_pref_alerts_sub"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_small" />
+                </LinearLayout>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchTicketAlerts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:checked="true" />
+            </RelativeLayout>
+
+            <!-- SECURITY & GOVERNANCE Section (Figma 2:1082 & PRD U10) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:text="@string/profile_section_security"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_white_box"
+                android:orientation="vertical">
+
+                <!-- Row 1: Change Security PIN & Pass (opens Change Password Dialog, PRD U10) -->
+                <RelativeLayout
+                    android:id="@+id/layoutChangePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <FrameLayout
+                        android:id="@+id/framePrefLock"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_chip_pink">
+
+                        <ImageView
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/profile_change_password_title"
+                            android:src="@drawable/ic_pref_lock" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_toStartOf="@id/ivChevronPass"
+                        android:layout_toEndOf="@id/framePrefLock"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/plus_jakarta_sans_semibold"
+                            android:text="@string/profile_change_password_title"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:text="@string/profile_change_password_sub"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_small" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivChevronPass"
+                        android:layout_width="7dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/profile_change_password_title"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/text_secondary" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/outline" />
+
+                <!-- Row 2: Student Rights & Charter -->
+                <RelativeLayout
+                    android:id="@+id/layoutStudentCharter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <FrameLayout
+                        android:id="@+id/framePrefGavel"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_circle_blue">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/profile_charter_title"
+                            android:src="@drawable/ic_pref_gavel" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_toStartOf="@id/ivChevronCharter"
+                        android:layout_toEndOf="@id/framePrefGavel"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/plus_jakarta_sans_semibold"
+                            android:text="@string/profile_charter_title"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:text="@string/profile_charter_sub"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_small" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivChevronCharter"
+                        android:layout_width="7dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/profile_charter_title"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/text_secondary" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- Sign Out of Desk Button (Figma 2:1112 & PRD U10) -->
+            <Button
+                android:id="@+id/btnProfileSignOut"
+                style="@style/Button.Danger"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="24dp"
+                android:text="@string/profile_btn_sign_out"
+                app:icon="@drawable/ic_sign_out"
+                app:iconGravity="textStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:gravity="center"
+                android:text="@string/profile_footer_version"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

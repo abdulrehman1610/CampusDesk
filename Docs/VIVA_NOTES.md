@@ -221,3 +221,69 @@ Displays the full student complaint (including student name, ticket code, catego
 Implements the **Users** tab using an Android **`ListView`** and a custom `BaseAdapter` (`UserListAdapter`) as required by PRD Section 3 and D8. Each row shows the user's initials avatar, full name, role badge (`ADMIN` vs `STUDENT`), email, and a delete icon button (hidden for the protected admin account). Both tapping the trash button and long-pressing a row open an `AlertDialog` to delete the student.
 - **Q:** What happens to a student's complaints when the admin deletes that student from the Users `ListView`?
   **A:** Because `DatabaseHelper.onConfigure()` enables foreign keys and the `complaints` table defines `FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE`, SQLite automatically deletes all complaints belonging to that student as soon as the user row is deleted.
+
+
+---
+
+## Milestone M7: Polish (Student Profile Tab, Change Password, and Viva Readiness Review)
+
+### `user/fragments/ProfileFragment.java`, `res/layout/fragment_profile.xml`, and `res/layout/dialog_change_password.xml`
+Implements the Figma `Profile (Crimson Dynamic)` screen (`2:956` & PRD U10). It displays the student's initials avatar with a verified checkmark badge, full name, email, department, and two live stat cards (`In Review Tickets` and `Resolved Cases`). It also provides a **Ticket Alerts** `SwitchMaterial` backed by `SharedPreferences`, a **Change Security PIN & Pass** row that opens a custom `AlertDialog` (`dialog_change_password.xml`) to verify the current password and update SQLite via `DatabaseHelper.updatePassword()`, a **Student Rights & Charter** dialog, and a **Sign Out of Desk** button.
+- **Q:** How does the Change Password dialog prevent the dialog from closing automatically when the user enters an invalid password?
+  **A:** We pass `null` as the positive button click listener when building the `AlertDialog`, and then inside `dialog.setOnShowListener(...)` we attach our own `View.OnClickListener` to `dialog.getButton(AlertDialog.BUTTON_POSITIVE)`. That way, the dialog only calls `dialog.dismiss()` after validation and `dbHelper.updatePassword()` succeed.
+
+---
+
+## Complete Viva Readiness Q&A Cheat Sheet (PRD Section 13)
+
+### 1. Why `SQLiteOpenHelper`? What do `onCreate`, `onUpgrade`, and `onConfigure` do?
+- **`SQLiteOpenHelper`** is Android's built-in helper class for creating, opening, and versioning a local SQLite database file (`complaint_app.db`).
+- **`onConfigure(SQLiteDatabase db)`** runs every time the database connection is opened; we call `db.setForeignKeyConstraintsEnabled(true)` here so foreign keys work.
+- **`onCreate(SQLiteDatabase db)`** runs **only once** when the app is installed and the database file does not exist yet. It executes `CREATE TABLE` statements for `users`, `complaints`, and `notices` and inserts the seed admin (`admin@uni.com` / `admin123`) and sample notices.
+- **`onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)`** runs automatically whenever `DATABASE_VERSION` is increased, dropping or migrating old tables and calling `onCreate(db)`.
+
+### 2. Difference between `ListView`, `GridView`, and `RecyclerView`. Why is `RecyclerView` more efficient?
+- **`ListView`** (used in `UsersFragment`) displays a single vertical scrolling column of rows using a `BaseAdapter`.
+- **`GridView`** (used in `NewComplaintFragment`) displays items in a two-dimensional grid of rows and columns (`numColumns="2"`) using a `BaseAdapter`.
+- **`RecyclerView`** (used in Notices and Complaints lists) is the modern, flexible container that separates layout arrangement (`LinearLayoutManager`) from data binding (`RecyclerView.Adapter`).
+- **Why `RecyclerView` is more efficient:** It strictly enforces the **`ViewHolder` pattern** (caching `findViewById` references in `onCreateViewHolder` so lookup never repeats while scrolling) and **recycles** off-screen item views in `onBindViewHolder`.
+
+### 3. How does an Adapter connect data to a view?
+- An **Adapter** sits between a data source (such as `List<Notice>`, `List<Complaint>`, or `List<User>`) and an AdapterView (`RecyclerView`, `ListView`, `GridView`, or `Spinner`).
+- It tells the list how many items exist (`getItemCount()` or `getCount()`), inflates the XML row layout for each visible slot (`onCreateViewHolder()` or `getView()`), and copies each model object's fields into the row's `TextView`s and `ImageView`s (`onBindViewHolder()`).
+
+### 4. How is data passed between Activities (`putExtra`) and returned (`ActivityResultLauncher`)?
+- **Passing forward (`putExtra`):** The calling screen creates an explicit `Intent`, attaches key-value data such as `intent.putExtra(Constants.EXTRA_COMPLAINT_ID, complaint.getId())`, and calls `startActivity(intent)`. The target Activity reads it in `onCreate()` with `getIntent().getIntExtra(Constants.EXTRA_COMPLAINT_ID, -1)`.
+- **Returning a result (`ActivityResultLauncher`):** `ComplaintDetailActivity` registers an `ActivityResultLauncher<Intent>` with `registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> ...)`. It launches `EditComplaintActivity` using `editComplaintLauncher.launch(intent)`. When the student saves their edit, `EditComplaintActivity` calls `setResult(RESULT_OK); finish();`, which triggers the callback in `ComplaintDetailActivity` to reload the updated record from SQLite.
+
+### 5. Explicit vs Implicit Intent (with examples from this app)
+- **Explicit Intent:** Specifies the exact Java class inside our app to open — for example `new Intent(LoginActivity.this, UserDashboardActivity.class)` or opening `NoticeDetailActivity`.
+- **Implicit Intent:** Specifies an **action** and **data/MIME type** so Android finds any installed app capable of performing it:
+  1. **Share Notice (`NoticeDetailActivity`):** `new Intent(Intent.ACTION_SEND)` with `setType("text/plain")` and `EXTRA_TEXT`, wrapped in `Intent.createChooser(...)`.
+  2. **Call Help Desk (`MyComplaintsFragment`):** `new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+924235761999"))`.
+
+### 6. `Activity` vs `Fragment`, and why use Fragments for tabs?
+- An **`Activity`** is a complete, independent screen registered in `AndroidManifest.xml` with its own window and lifecycle.
+- A **`Fragment`** is a modular sub-screen with its own layout and lifecycle that lives inside a host Activity.
+- **Why Fragments for tabs:** On `UserDashboardActivity` (`BottomNavigationView`) and `AdminDashboardActivity` (`TabLayout` + `ViewPager2`), the top header/Toolbar and navigation bar stay mounted while only the inner content Fragment swaps. This avoids recreating the whole window on every tab tap.
+
+### 7. What does `FragmentStateAdapter` do with `ViewPager2`?
+- `AdminPagerAdapter extends FragmentStateAdapter` supplies the 4 fragments (`OverviewFragment`, `AdminComplaintsFragment`, `AdminNoticesFragment`, `UsersFragment`) to `ViewPager2` as the admin swipes horizontally or taps tabs in `TabLayout`. It automatically creates, saves state for, and destroys off-screen fragments to keep memory usage low.
+
+### 8. How is Admin separated from User?
+- **Database column:** The `users` table has a `role` column storing `"user"` (for self-registered students) or `"admin"` (for the seeded `admin@uni.com` account).
+- **Login routing:** `LoginActivity` checks `Constants.ROLE_ADMIN.equals(user.getRole())` and routes to `AdminDashboardActivity` or `UserDashboardActivity`.
+- **Dashboard guard check:** Both `UserDashboardActivity.onCreate()` and `AdminDashboardActivity.onCreate()` check `sessionManager.getRole()`. If the stored role does not match that dashboard, the user is immediately redirected to `LoginActivity`.
+
+### 9. What is `SharedPreferences` and what is stored there?
+- `SharedPreferences` (wrapped by `SessionManager.java`) is a lightweight XML key-value file stored in the app's private internal storage (`campus_desk_prefs`).
+- We store: `user_id`, `user_name`, `user_email`, `user_role`, `remember_me` (boolean), and `alerts_enabled` (boolean). When `remember_me` is true, `MainActivity` skips `LoginActivity` on next launch and opens the user's dashboard directly.
+
+### 10. What is a foreign key and what does `ON DELETE CASCADE` do here?
+- In `complaints`, `user_id` is a **foreign key** referencing `users(id)`: `FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE`.
+- Because `onConfigure()` calls `db.setForeignKeyConstraintsEnabled(true)`, when the admin deletes a student in `UsersFragment`, SQLite automatically cascades the deletion and removes every complaint row belonging to that `user_id` so no orphaned complaints remain.
+
+### 11. Known Coursework Limitations (be ready to mention in Viva)
+1. **Plain-text passwords:** Passwords are stored as plain text in SQLite for coursework simplicity; a production app hashes passwords (e.g., bcrypt / Argon2 / PBKDF2) and uses secure token authentication.
+2. **Main-thread database queries:** All SQLite reads and writes run synchronously on the UI thread because the local dataset is small; a production app runs DB queries on background threads / executors.
+3. **Offline-only storage:** Data lives in local SQLite on the device with no cloud backend or multi-device synchronization.

@@ -290,6 +290,37 @@
     <string name="admin_user_delete_message">Delete \"%1$s\" (%2$s)? All complaints submitted by this student will also be deleted (ON DELETE CASCADE).</string>
     <string name="admin_user_deleted_toast">User and their complaints deleted</string>
 
+    <!-- Student Profile Tab (Milestone M7 - Figma 2:956 & PRD U10) -->
+    <string name="profile_status_active">Active</string>
+    <string name="profile_department">Computer Science &amp; Engineering</string>
+    <string name="profile_stat_live_tag">Live</string>
+    <string name="profile_stat_in_review">In Review Tickets</string>
+    <string name="profile_stat_turnaround">Est. 4h Turnaround</string>
+    <string name="profile_stat_resolved">Resolved Cases</string>
+    <string name="profile_stat_compliant">Charter Compliant</string>
+    <string name="profile_section_preferences">DESK PREFERENCES</string>
+    <string name="profile_sync_enabled">Sync Enabled</string>
+    <string name="profile_pref_alerts_title">Ticket Alerts</string>
+    <string name="profile_pref_alerts_sub">Instant SMS &amp; push on desk dispatch</string>
+    <string name="profile_alerts_on_toast">Ticket alerts enabled</string>
+    <string name="profile_alerts_off_toast">Ticket alerts muted</string>
+    <string name="profile_section_security">SECURITY &amp; GOVERNANCE</string>
+    <string name="profile_change_password_title">Change Security PIN &amp; Pass</string>
+    <string name="profile_change_password_sub">Update your account password</string>
+    <string name="profile_charter_title">Student Rights &amp; Charter</string>
+    <string name="profile_charter_sub">2024 University Redressal Code of Conduct</string>
+    <string name="profile_charter_dialog_message">1. Every student complaint is logged with a unique tracking ID.\n2. Pending complaints can be edited or withdrawn before resolution.\n3. Official replies from the campus desk are permanently attached to your ticket record.</string>
+    <string name="profile_btn_sign_out">Sign Out of Desk</string>
+    <string name="profile_footer_version">Campus Desk Mobile v4.8.2 • Secure Session</string>
+
+    <!-- Change Password Dialog (Milestone M7 - PRD U10) -->
+    <string name="dialog_password_heading">Change Password</string>
+    <string name="dialog_label_current_password">Current Password</string>
+    <string name="dialog_label_new_password">New Password (min. 6 chars)</string>
+    <string name="dialog_label_confirm_password">Confirm New Password</string>
+    <string name="error_current_password_wrong">Current password is incorrect</string>
+    <string name="password_updated_toast">Password updated successfully!</string>
+
     <!-- Complaint categories (names from the Figma design) -->
     <string name="category_hostel">Hostel &amp; Mess</string>
     <string name="category_transport">Transport</string>
