@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- All app colors live here. Layouts must use @color/... and never hardcode hex values.
+     Values are taken from the Figma "Crimson Dynamic" design. -->
+<resources>
+    <!-- Basic -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Dark "midnight" colors: headers, bottom dock, headings -->
+    <color name="midnight">#0F1D29</color>
+    <color name="midnight_alt">#0A1D2C</color>
+    <color name="midnight_soft">#24323F</color>
+    <color name="gradient_start">#111E33</color>
+    <color name="gradient_middle">#1A1325</color>
+    <color name="gradient_end">#800720</color>
+
+    <!-- Crimson brand colors: buttons, selected tabs, links -->
+    <color name="crimson">#E02040</color>
+    <color name="crimson_dark">#B8002D</color>
+    <color name="crimson_deep">#93000A</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#0F1D29</color>
+    <color name="text_secondary">#4E6072</color>
+    <color name="text_muted">#536476</color>
+    <color name="text_on_dark">#FFFFFF</color>
+    <color name="text_on_dark_muted">#B3FFFFFF</color>
+
+    <!-- Surfaces and backgrounds -->
+    <color name="surface">#F7F9FF</color>
+    <color name="input_bg">#EDF4FF</color>
+    <color name="chip_blue">#DBEAFB</color>
+    <color name="chip_blue_light">#E2EFFF</color>
+    <color name="chip_blue_dark">#CFE2F6</color>
+    <color name="pink_soft">#FFDAD9</color>
+    <color name="pink_lightest">#FFF9F9</color>
+    <color name="outline">#CDDCED</color>
+    <color name="glass_white">#1AFFFFFF</color>
+    <color name="glass_border">#33FFFFFF</color>
+
+    <!-- Complaint status badge colors (PRD section 9) -->
+    <color name="status_pending">#F59E0B</color>
+    <color name="status_pending_bg">#FEF3C7</color>
+    <color name="status_resolved">#16A34A</color>
+    <color name="status_resolved_bg">#DCFCE7</color>
+
+    <!-- Priority colors (PRD section 9): Low green, Medium orange, High red -->
+    <color name="priority_low">#16A34A</color>
+    <color name="priority_medium">#F59E0B</color>
+    <color name="priority_high">#E02040</color>
+
+    <!-- Small accent used for "online" dots -->
+    <color name="accent_green">#34D399</color>
+</resources>

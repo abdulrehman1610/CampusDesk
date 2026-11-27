@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme: light Material 3 with the "Crimson Dynamic" colors from Figma. -->
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Main brand colors -->
+        <item name="colorPrimary">@color/crimson</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/pink_soft</item>
+        <item name="colorOnPrimaryContainer">@color/crimson_dark</item>
+        <item name="colorSecondary">@color/midnight</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/chip_blue</item>
+        <item name="colorOnSecondaryContainer">@color/midnight</item>
+        <item name="colorError">@color/crimson_dark</item>
+
+        <!-- Backgrounds and surfaces -->
+        <item name="android:colorBackground">@color/surface</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/midnight</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+        <item name="colorOutline">@color/outline</item>
+
+        <!-- Default font for the whole app (Plus Jakarta Sans) -->
+        <item name="android:fontFamily">@font/plus_jakarta_sans</item>
+        <item name="fontFamily">@font/plus_jakarta_sans</item>
+
+        <!-- Status bar uses light icons on top of the dark header gradient -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+</resources>

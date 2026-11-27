@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft pink rounded chip (priority tags, "REQ ACTION" labels). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/pink_soft" />
+    <corners android:radius="@dimen/radius_pill" />
+</shape>
