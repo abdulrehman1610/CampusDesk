@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft pink rounded stat tile (22dp corners) for Pending Review metric card. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#66FFDAD9" />
+    <corners android:radius="22dp" />
+</shape>

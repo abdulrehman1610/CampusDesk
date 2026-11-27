@@ -196,3 +196,28 @@ Implements the Figma `My Complaints (Crimson Dynamic)` screen (`2:698`). It popu
 `ComplaintDetailActivity` displays every field of a complaint plus the admin reply (or `"No reply yet"`). While the status is `Pending`, it shows **Edit Complaint** and **Delete Complaint** buttons (hiding them and showing a lock message once `Resolved`). Tapping **Edit Complaint** launches `EditComplaintActivity` using `ActivityResultLauncher<Intent>`. When the student saves changes in `EditComplaintActivity`, it calls `setResult(RESULT_OK)` and `finish()`, triggering the launcher callback to refresh the complaint details and list.
 - **Q:** How does `ActivityResultLauncher` work when returning data from `EditComplaintActivity`?
   **A:** We register a launcher with `registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> ...)`. When `EditComplaintActivity` updates SQLite and calls `setResult(RESULT_OK); finish();`, the callback sees `result.getResultCode() == RESULT_OK` and immediately reloads the updated complaint from the database.
+
+
+---
+
+## Milestone M6: Admin Complaints + Overview + Users (ListView)
+
+### `admin/fragments/OverviewFragment.java` and `res/layout/fragment_overview.xml`
+Implements the Figma `Admin Overview (Crimson Dynamic)` screen (`2:1160` & PRD D2). It queries `DatabaseHelper` for all 5 SQL `COUNT(*)` statistics (`getComplaintCount()`, `getComplaintCountByStatus("Pending")`, `getComplaintCountByStatus("Resolved")`, `getNoticeCount()`, `getUserCount()`), populates the 2x2 metric tiles, calculates the resolved percentage for the **Resolution Pace** `ProgressBar`, and binds the latest 3 complaints to the **Recent Filings** `RecyclerView`.
+- **Q:** How does `OverviewFragment` get the counts for Pending, Resolved, Notices, and Users?
+  **A:** It runs SQL `SELECT COUNT(*) FROM ...` queries inside `DatabaseHelper` (`getComplaintCountByStatus()`, `getNoticeCount()`, `getUserCount()`) inside `onResume()`, which is much faster than loading every row into memory just to count them.
+
+### `admin/fragments/AdminComplaintsFragment.java` and `res/layout/fragment_admin_complaints.xml`
+Implements the Figma `Admin Complaints (Crimson Dynamic)` screen (`2:1398` & PRD D3, D4, D9). It displays all complaints joined with student names (`LEFT JOIN users`), provides a **Status Filter `Spinner`** (`All / Pending / Resolved`, synced with the 3 filter pills) and a **Sort `Spinner`** (`Sort by Date / Sort by Priority`), filters live by search keyword, and opens `AdminComplaintDetailActivity` when a complaint is tapped.
+- **Q:** How does the Status Filter `Spinner` filter complaints in `AdminComplaintsFragment`?
+  **A:** We attach an `AdapterView.OnItemSelectedListener` to the `Spinner`. When position 1 (`Pending`) or 2 (`Resolved`) is selected, we call `dbHelper.getComplaintsByStatus(status)` and pass the result to `complaintAdapter.updateList(filtered)`.
+
+### `admin/AdminComplaintDetailActivity.java` and `res/layout/activity_admin_complaint_detail.xml`
+Displays the full student complaint (including student name, ticket code, category, priority, status, and description) and provides a multi-line `EditText` for the official admin reply (PRD D5 & D6). The admin can tap **Save Reply & Mark Resolved**, **Save Reply & Keep Pending**, or **Delete Ticket** (with an `AlertDialog` confirmation).
+- **Q:** What happens in the database when the admin taps **Save Reply & Mark Resolved**?
+  **A:** `DatabaseHelper.replyToComplaint(complaintId, reply, Constants.STATUS_RESOLVED)` updates both the `reply` and `status` columns of that row in the `complaints` table. When the student logs back in, their badge turns green (`Resolved`), the admin reply is displayed, and the Edit/Delete buttons are locked.
+
+### `adapters/UserListAdapter.java`, `admin/fragments/UsersFragment.java`, `res/layout/fragment_users.xml`, and `res/layout/item_user.xml`
+Implements the **Users** tab using an Android **`ListView`** and a custom `BaseAdapter` (`UserListAdapter`) as required by PRD Section 3 and D8. Each row shows the user's initials avatar, full name, role badge (`ADMIN` vs `STUDENT`), email, and a delete icon button (hidden for the protected admin account). Both tapping the trash button and long-pressing a row open an `AlertDialog` to delete the student.
+- **Q:** What happens to a student's complaints when the admin deletes that student from the Users `ListView`?
+  **A:** Because `DatabaseHelper.onConfigure()` enables foreign keys and the `complaints` table defines `FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE`, SQLite automatically deletes all complaints belonging to that student as soon as the user row is deleted.

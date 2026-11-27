@@ -227,6 +227,69 @@
     <string name="edit_complaint_btn_save">Save Changes</string>
     <string name="complaint_updated_toast">Complaint updated successfully</string>
 
+    <!-- Admin Overview Tab (Milestone M6 - Figma 2:1160 & PRD D2) -->
+    <string name="overview_tag_req_action">REQ ACTION</string>
+    <string name="overview_tag_rate_fmt">%1$d%% RATE</string>
+    <string name="overview_tag_active">ACTIVE</string>
+    <string name="overview_tag_enrolled">ENROLLED</string>
+    <string name="overview_label_pending">Pending Review</string>
+    <string name="overview_label_resolved">Resolved Cases</string>
+    <string name="overview_label_notices">Campus Notices</string>
+    <string name="overview_label_users">Student / Faculty</string>
+    <string name="overview_sub_pending_fmt">Of %1$d total filings</string>
+    <string name="overview_sub_resolved">Target on-track</string>
+    <string name="overview_sub_notices">Broadcast live</string>
+    <string name="overview_sub_users">Verified desk</string>
+    <string name="overview_pace_title">Resolution Pace</string>
+    <string name="overview_pace_goal">Goal: 80% SLA</string>
+    <string name="overview_pace_body_fmt">%1$d of %2$d logged issues successfully processed within the 48h campus SLA bracket.</string>
+    <string name="overview_pace_resolved_fmt">Resolved (%1$d%%)</string>
+    <string name="overview_pace_pending_fmt">Pending (%1$d%%)</string>
+    <string name="overview_queue_title">Queue Attention</string>
+    <string name="overview_queue_badge">HIGH</string>
+    <string name="overview_queue_body_fmt">%1$d pending inquiries awaiting admin review &amp; response</string>
+    <string name="overview_btn_post_notice">Post Notice</string>
+    <string name="overview_btn_view_queue">Manage Queue</string>
+    <string name="overview_recent_filings">Recent Filings</string>
+    <string name="overview_view_all_fmt">View All (%1$d)</string>
+    <string name="overview_recent_empty">No student complaints have been filed yet.</string>
+
+    <!-- Admin Complaints Tab & Detail (Milestone M6 - Figma 2:1398 & PRD D3, D4, D5, D6, D9) -->
+    <string name="admin_complaints_live_queue">LIVE QUEUE ACTIVITY</string>
+    <string name="admin_complaints_stat_pending">Pending</string>
+    <string name="admin_complaints_stat_resolved">Resolved</string>
+    <string name="admin_complaints_stat_total">Total</string>
+    <string name="admin_complaints_search_hint">Search ticket #, student name, keyword…</string>
+    <string name="admin_filter_status_label">Status:</string>
+    <string name="admin_filter_sort_label">Sort:</string>
+    <string name="admin_filter_all">All</string>
+    <string name="admin_filter_pending">Pending</string>
+    <string name="admin_filter_resolved">Resolved</string>
+    <string name="admin_complaints_empty">No complaints match the current filter.</string>
+    <string name="admin_detail_badge">ADMIN CONSOLE</string>
+    <string name="admin_detail_heading">Review &amp; Resolve Ticket</string>
+    <string name="admin_detail_student_label">Submitted by %1$s</string>
+    <string name="admin_detail_reply_label">Official Admin Reply *</string>
+    <string name="admin_detail_reply_hint">Write your resolution response or instructions for the student…</string>
+    <string name="admin_btn_mark_resolved">Save Reply &amp; Mark Resolved</string>
+    <string name="admin_btn_mark_pending">Save Reply &amp; Keep Pending</string>
+    <string name="admin_btn_delete_complaint">Delete Ticket</string>
+    <string name="error_admin_reply_required">Please write a reply before resolving the complaint</string>
+    <string name="admin_reply_saved_resolved_toast">Reply saved and complaint marked Resolved</string>
+    <string name="admin_reply_saved_pending_toast">Reply saved and status set to Pending</string>
+
+    <!-- Admin Users Tab (ListView) (Milestone M6 - PRD Section 3 & D8) -->
+    <string name="admin_users_heading">Registered Campus Users</string>
+    <string name="admin_users_count_fmt">%1$d accounts</string>
+    <string name="admin_users_hint">Tap the trash icon or long-press a student row to delete their account and complaints.</string>
+    <string name="admin_users_empty">No registered users found.</string>
+    <string name="user_role_badge_admin">ADMIN</string>
+    <string name="user_role_badge_student">STUDENT</string>
+    <string name="admin_user_protected_toast">The administrator account cannot be deleted.</string>
+    <string name="admin_user_delete_title">Delete Student Account?</string>
+    <string name="admin_user_delete_message">Delete \"%1$s\" (%2$s)? All complaints submitted by this student will also be deleted (ON DELETE CASCADE).</string>
+    <string name="admin_user_deleted_toast">User and their complaints deleted</string>
+
     <!-- Complaint categories (names from the Figma design) -->
     <string name="category_hostel">Hostel &amp; Mess</string>
     <string name="category_transport">Transport</string>
