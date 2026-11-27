@@ -93,3 +93,28 @@ Extends `SQLiteOpenHelper` to manage `complaint_app.db` (version 1). It enables 
   **A:** `SQLiteOpenHelper` handles opening the database file and tracking its version number. `onConfigure()` runs every time the database opens so we can enable foreign keys (`ON DELETE CASCADE`). `onCreate()` runs only once on first install to create the tables and seed data. `onUpgrade()` runs whenever `DATABASE_VERSION` increases to update the schema.
 - **Q:** What does `FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE` do in the `complaints` table?
   **A:** It links every complaint to the user who created it (`users.id`). `ON DELETE CASCADE` tells SQLite that when an admin deletes a student from the `users` table, all complaints belonging to that student are automatically deleted too.
+
+
+---
+
+## Milestone M2: Authentication (Login, Register, Role Routing, Remember Me, Logout)
+
+### `auth/LoginActivity.java` and `res/layout/activity_login.xml`
+Implements the Figma `Login (Crimson Dynamic)` screen using `ScrollView`, `ConstraintLayout`, `LinearLayout`, `RelativeLayout`, and `FrameLayout`. It validates email and password, queries `DatabaseHelper.loginUser()`, saves the session in `SessionManager` (including the "Remember device" `CheckBox`), toggles password visibility via both the "Show password" `CheckBox` and the eye icon, and routes to `UserDashboardActivity` or `AdminDashboardActivity` using an explicit `Intent`.
+- **Q:** How do we clear the back stack after login so pressing the Back button on the dashboard does not take the user back to the Login screen?
+  **A:** Before calling `startActivity(intent)`, we set `intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)` and then call `finish()` on `LoginActivity`.
+
+### `auth/RegisterActivity.java` and `res/layout/activity_register.xml`
+Implements the Figma `Register (Crimson Dynamic)` screen. It validates that no field is empty, checks the email format with `Patterns.EMAIL_ADDRESS`, verifies the password is at least 6 characters, confirms both passwords match, checks `!dbHelper.emailExists(email)`, updates a 4-bar password strength meter with a `TextWatcher`, and inserts the new student with role `"user"`.
+- **Q:** How does inline form validation work in Android Views?
+  **A:** We call `editText.setError("message")` and `editText.requestFocus()`. Android automatically displays an error icon and popup message right inside that `EditText` without crashing or leaving the screen.
+
+### `MainActivity.java` (Launcher / Session Router)
+Runs first when the app icon is tapped (`MAIN` / `LAUNCHER` intent-filter in `AndroidManifest.xml`). It reads `SessionManager`: if `isLoggedIn()` and `isRememberMe()` are both true, it forwards directly to `AdminDashboardActivity` or `UserDashboardActivity`; otherwise it opens `LoginActivity` and calls `finish()`.
+- **Q:** Why use `MainActivity` as a router instead of making `LoginActivity` the launcher?
+  **A:** Having a dedicated router checks `SharedPreferences` before drawing any UI. When "Remember me" is ticked, the user goes straight to their dashboard without seeing a flash of the Login screen.
+
+### `user/UserDashboardActivity.java`, `admin/AdminDashboardActivity.java`, and `res/menu/menu_toolbar.xml`
+Dashboard shells for students and admins. Each dashboard checks `sessionManager.getRole()` inside `onCreate()` (redirecting to `LoginActivity` if the role does not match) and attaches a `MaterialToolbar` that inflates `menu_toolbar.xml` (`onCreateOptionsMenu` / `onOptionsItemSelected`) so tapping **Logout** clears `SharedPreferences` and returns to `LoginActivity`.
+- **Q:** How is the Admin section protected from normal student users?
+  **A:** At two levels: first, `LoginActivity` checks `user.getRole()` (`"user"` vs `"admin"`) to decide which dashboard to open; second, `AdminDashboardActivity.onCreate()` verifies `Constants.ROLE_ADMIN.equals(sessionManager.getRole())` and immediately redirects back to `LoginActivity` if it does not match.

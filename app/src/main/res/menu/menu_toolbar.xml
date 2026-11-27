@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Toolbar options menu with Logout item (PRD Section 3 & Section 5.1 A6). -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="@string/action_logout"
+        app:showAsAction="always" />
+</menu>

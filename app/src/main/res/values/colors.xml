@@ -52,4 +52,7 @@
 
     <!-- Small accent used for "online" dots -->
     <color name="accent_green">#34D399</color>
+    <color name="emerald_dot">#10B981</color>
+    <color name="text_label_warm">#5C3F3F</color>
+    <color name="input_border">#6B7280</color>
 </resources>

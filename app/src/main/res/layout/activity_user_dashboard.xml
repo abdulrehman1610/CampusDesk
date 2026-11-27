@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- User Dashboard shell (Milestone M2: Toolbar with Logout menu + user welcome card;
+     Milestone M4 adds BottomNavigationView and Fragments). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:orientation="vertical">
+
+    <!-- Top Toolbar with Logout menu item (PRD A6) -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarUser"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_header_gradient"
+        app:subtitle="@string/user_dashboard_subtitle"
+        app:subtitleTextColor="@color/text_on_dark_muted"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white" />
+
+    <!-- Placeholder body until Milestone M4 replaces it with Fragment container + BottomNavigationView -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Card.List"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/space_l">
+
+                <TextView
+                    android:id="@+id/tvUserWelcome"
+                    style="@style/Text.Heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_dashboard_welcome" />
+
+                <TextView
+                    android:id="@+id/tvUserEmail"
+                    style="@style/Text.Secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/user_dashboard_subtitle" />
+
+                <Button
+                    android:id="@+id/btnUserLogout"
+                    style="@style/Button.Danger"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/action_logout" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</LinearLayout>

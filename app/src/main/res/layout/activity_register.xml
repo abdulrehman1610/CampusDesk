@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Register Screen layout matching Figma node 2:124 "Register (Crimson Dynamic)". -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/registerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/midnight"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midnight"
+        android:orientation="vertical">
+
+        <!-- Dynamic Midnight to Crimson Header Block (Figma 2:127) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_header_gradient"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="36dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="48dp">
+
+            <!-- Navigation Bar: Back button, ID PORTAL badge, Help button (Figma 2:130) -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/btnBack"
+                    android:layout_width="@dimen/icon_button_size"
+                    android:layout_height="@dimen/icon_button_size"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_icon_circle_glass">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/action_back"
+                        android:src="@drawable/ic_arrow_back" />
+                </FrameLayout>
+
+                <!-- Center Badge Indicator: ID PORTAL (Figma 2:134) -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bg_glass_pill"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="5dp">
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/bg_dot_crimson" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
+                        android:text="@string/register_badge_portal"
+                        android:textColor="@color/text_on_dark"
+                        android:textSize="@dimen/text_caption" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/btnHelp"
+                    android:layout_width="@dimen/icon_button_size"
+                    android:layout_height="@dimen/icon_button_size"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_icon_circle_glass">
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/register_badge_portal"
+                        android:src="@drawable/ic_help" />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <!-- Breadcrumb: SERVICE ACCESS • Registration (Figma 2:142) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="@string/register_breadcrumb_service"
+                    android:textColor="@color/pink_soft"
+                    android:textSize="@dimen/text_caption" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/register_breadcrumb_dot"
+                    android:textColor="@color/text_on_dark_muted"
+                    android:textSize="@dimen/text_body" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="@string/register_breadcrumb_reg"
+                    android:textColor="@color/text_on_dark_muted"
+                    android:textSize="@dimen/text_caption" />
+            </LinearLayout>
+
+            <!-- Heading 1: Create Your Account (Figma 2:149) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/plus_jakarta_sans_extrabold"
+                android:text="@string/register_hero_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_title_large" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:text="@string/register_hero_subtitle"
+                android:textColor="@color/text_on_dark_muted"
+                android:textSize="@dimen/text_body" />
+        </LinearLayout>
+
+        <!-- Elevated Sheet Canvas Overlapping Header (Figma 2:154) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-24dp"
+            android:background="@drawable/bg_sheet_rounded"
+            android:elevation="8dp"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="32dp">
+
+            <!-- Field 1: Full Name (Figma 2:157) -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="@string/register_label_name"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:text="@string/register_badge_verified"
+                    android:textColor="@color/crimson_dark"
+                    android:textSize="@dimen/text_caption" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_input_box"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
+
+                <ImageView
+                    android:id="@+id/ivPersonIcon"
+                    android:layout_width="23dp"
+                    android:layout_height="14dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/register_label_name"
+                    android:src="@drawable/ic_person" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_toStartOf="@id/ivNameCheck"
+                    android:layout_toEndOf="@id/ivPersonIcon"
+                    android:autofillHints="name"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:hint="@string/register_hint_name"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary"
+                    android:textSize="@dimen/text_body_large" />
+
+                <ImageView
+                    android:id="@+id/ivNameCheck"
+                    android:layout_width="24dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/register_badge_verified"
+                    android:src="@drawable/ic_check_circle" />
+            </RelativeLayout>
+
+            <!-- Field 2: Institutional Email (Figma 2:171) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
+                android:text="@string/register_label_email"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_input_box"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
+
+                <ImageView
+                    android:id="@+id/ivEmailCapIcon"
+                    android:layout_width="28dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/register_label_email"
+                    android:src="@drawable/ic_cap_grey" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_toStartOf="@id/ivEmailCheck"
+                    android:layout_toEndOf="@id/ivEmailCapIcon"
+                    android:autofillHints="emailAddress"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:hint="@string/register_hint_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary"
+                    android:textSize="@dimen/text_body_large" />
+
+                <ImageView
+                    android:id="@+id/ivEmailCheck"
+                    android:layout_width="24dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/register_badge_verified"
+                    android:src="@drawable/ic_check_circle" />
+            </RelativeLayout>
+
+            <!-- Field 3: Password (Figma 2:182) -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="@string/register_label_password"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="@string/register_min_chars"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_input_box"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
+
+                <ImageView
+                    android:id="@+id/ivPasswordLockIcon"
+                    android:layout_width="23dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/register_label_password"
+                    android:src="@drawable/ic_lock_grey" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_toStartOf="@id/ivTogglePassword"
+                    android:layout_toEndOf="@id/ivPasswordLockIcon"
+                    android:autofillHints="password"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:hint="@string/register_hint_password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary"
+                    android:textSize="@dimen/text_body_large" />
+
+                <ImageView
+                    android:id="@+id/ivTogglePassword"
+                    android:layout_width="26dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/login_show_password"
+                    android:src="@drawable/ic_eye_off" />
+            </RelativeLayout>
+
+            <!-- Field 4: Confirm Password (Figma 2:197) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
+                android:text="@string/register_label_confirm_password"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_input_box"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
+
+                <ImageView
+                    android:id="@+id/ivConfirmLockIcon"
+                    android:layout_width="26dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/register_label_confirm_password"
+                    android:src="@drawable/ic_lock_reset" />
+
+                <EditText
+                    android:id="@+id/etConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_toStartOf="@id/ivToggleConfirmPassword"
+                    android:layout_toEndOf="@id/ivConfirmLockIcon"
+                    android:autofillHints="password"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:hint="@string/register_hint_password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary"
+                    android:textSize="@dimen/text_body_large" />
+
+                <ImageView
+                    android:id="@+id/ivToggleConfirmPassword"
+                    android:layout_width="26dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/login_show_password"
+                    android:src="@drawable/ic_eye_off" />
+            </RelativeLayout>
+
+            <!-- Password Strength Meter Pill Indicator (Figma 2:209) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <View
+                    android:id="@+id/viewStrength1"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_crimson" />
+
+                <View
+                    android:id="@+id/viewStrength2"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_crimson" />
+
+                <View
+                    android:id="@+id/viewStrength3"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_crimson" />
+
+                <View
+                    android:id="@+id/viewStrength4"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_blue" />
+
+                <TextView
+                    android:id="@+id/tvStrengthLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="@string/register_strength_strong"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
+            </LinearLayout>
+
+            <!-- Terms & Policy Info Box (Figma 2:217) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/input_bg"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="17dp"
+                    android:layout_marginTop="2dp"
+                    android:contentDescription="@string/register_footer_badge"
+                    android:src="@drawable/ic_shield_check" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:lineSpacingExtra="2dp"
+                    android:text="@string/register_compliance_note"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_small" />
+            </LinearLayout>
+
+            <!-- Primary Action: REGISTER Button (Figma 2:223) -->
+            <Button
+                android:id="@+id/btnRegister"
+                style="@style/Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:text="@string/register_button_submit"
+                app:icon="@drawable/ic_arrow_right"
+                app:iconGravity="textEnd" />
+
+            <!-- Alternative Action: Sign In Link (Figma 2:230) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:text="@string/register_already_have_account"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_body" />
+
+                <TextView
+                    android:id="@+id/tvSignIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:padding="4dp"
+                    android:text="@string/register_sign_in_link"
+                    android:textColor="@color/crimson_dark"
+                    android:textSize="@dimen/text_body" />
+            </LinearLayout>
+
+            <!-- Footer Security Seal Badge (Figma 2:235) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_chip_blue"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="14dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="14dp"
+                    android:paddingBottom="6dp">
+
+                    <ImageView
+                        android:layout_width="11dp"
+                        android:layout_height="14dp"
+                        android:contentDescription="@string/register_footer_badge"
+                        android:src="@drawable/ic_shield_fill" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
+                        android:text="@string/register_footer_badge"
+                        android:textColor="@color/text_label_warm"
+                        android:textSize="@dimen/text_caption" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:text="@string/register_footer_caption"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_small" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
