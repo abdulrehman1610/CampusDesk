@@ -168,3 +168,31 @@ Implements the Figma `Notices (Crimson Dynamic)` screen (`2:467`). It shows the 
 Reads `Constants.EXTRA_NOTICE_ID` via `getIntent().getIntExtra(...)`, loads the full `Notice` from `DatabaseHelper.getNoticeById(noticeId)`, displays its code, date, full title, and full content, and provides a **Share Notice** button that launches Android's system share sheet using an **implicit Intent** (`Intent.ACTION_SEND`).
 - **Q:** What is the difference between an explicit Intent and an implicit Intent? Give an example from this app.
   **A:** An **explicit Intent** names the exact target Activity class inside our app (e.g., `new Intent(requireContext(), NoticeDetailActivity.class)`). An **implicit Intent** declares a general action and data type (e.g., `new Intent(Intent.ACTION_SEND)` with `type = "text/plain"` and `EXTRA_TEXT`) so Android shows a chooser sheet of external apps (WhatsApp, Gmail, Messages) that can handle sharing text.
+
+
+---
+
+## Milestone M5: User Complaints (New Complaint GridView + RadioGroup, My Complaints, Detail, Edit with ActivityResultLauncher, Delete)
+
+### `adapters/CategoryGridAdapter.java` and `res/layout/item_category_grid.xml`
+A custom `BaseAdapter` that displays the 6 complaint categories (`Hostel & Mess`, `Transport`, `Academic`, `Fee & Dues`, `Library`, `General`) inside a 2-column `GridView` on `NewComplaintFragment`. It tracks `selectedPosition` and highlights the chosen tile with a soft pink background, crimson border, crimson icon circle, and a white checkmark badge.
+- **Q:** What is the difference between `GridView` and `RecyclerView`, and how does `BaseAdapter` work?
+  **A:** `GridView` arranges items in a two-dimensional grid of rows and columns using a `BaseAdapter`, where `getView(position, convertView, parent)` inflates or reuses a tile view for each position. `RecyclerView` is more flexible (supporting linear, grid, or staggered LayoutManagers) and enforces the `ViewHolder` pattern.
+
+### `user/fragments/NewComplaintFragment.java` and `res/layout/fragment_new_complaint.xml`
+Implements the Figma `New Complaint (Crimson Dynamic)` screen (`2:253`). It collects the complaint title, the category from the `GridView`, the urgency priority from a 3-option pill `RadioGroup` (`Low`, `Medium`, `High`), and a detailed description with a live `0/500` character counter (`TextWatcher`). Submitting saves the complaint in SQLite with initial status `"Pending"` and switches the bottom navigation bar to `MyComplaintsFragment`.
+- **Q:** How do we read which `RadioButton` is selected inside a `RadioGroup`?
+  **A:** We call `rgPriority.getCheckedRadioButtonId()` and compare the returned resource ID against `R.id.rbPriorityLow`, `R.id.rbPriorityMedium`, and `R.id.rbPriorityHigh`.
+
+### `adapters/ComplaintAdapter.java` and `res/layout/item_complaint.xml`
+A `RecyclerView.Adapter` that binds each `Complaint` object to a MaterialCardView with a 6dp status accent stripe, monospace ticket ID (`#C-0001`), colored status badge (**Pending** = orange `#F59E0B`, **Resolved** = green `#16A34A` per PRD Section 9), colored priority label (**Low** = green, **Medium** = orange, **High** = red), category tag, and date.
+
+### `user/fragments/MyComplaintsFragment.java` and `res/layout/fragment_my_complaints.xml`
+Implements the Figma `My Complaints (Crimson Dynamic)` screen (`2:698`). It populates the 3 header stat tiles (`Total Filed`, `Pending`, `Resolved`) using `DatabaseHelper` `COUNT(*)` queries for the logged-in student, filters complaints live by search text and category chips, sorts them using a `Spinner` (`Sort by Date`, `Sort by Priority`, `Pending First`), and wires the **Call Desk** button to an implicit `Intent.ACTION_DIAL`.
+- **Q:** How does the **Call Desk** button demonstrate a second implicit Intent?
+  **A:** It creates `new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+924235761999"))`, which asks Android to open the phone dialer app with the campus help desk number pre-filled, without needing special call permissions.
+
+### `user/ComplaintDetailActivity.java`, `user/EditComplaintActivity.java`, `res/layout/activity_complaint_detail.xml`, and `res/layout/activity_edit_complaint.xml`
+`ComplaintDetailActivity` displays every field of a complaint plus the admin reply (or `"No reply yet"`). While the status is `Pending`, it shows **Edit Complaint** and **Delete Complaint** buttons (hiding them and showing a lock message once `Resolved`). Tapping **Edit Complaint** launches `EditComplaintActivity` using `ActivityResultLauncher<Intent>`. When the student saves changes in `EditComplaintActivity`, it calls `setResult(RESULT_OK)` and `finish()`, triggering the launcher callback to refresh the complaint details and list.
+- **Q:** How does `ActivityResultLauncher` work when returning data from `EditComplaintActivity`?
+  **A:** We register a launcher with `registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> ...)`. When `EditComplaintActivity` updates SQLite and calls `setResult(RESULT_OK); finish();`, the callback sees `result.getResultCode() == RESULT_OK` and immediately reloads the updated complaint from the database.

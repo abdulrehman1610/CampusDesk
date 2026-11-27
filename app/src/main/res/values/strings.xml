@@ -152,6 +152,81 @@
     <string name="notice_share_chooser">Share Notice via</string>
     <string name="notice_share_template">%1$s (%2$s)\nPublished: %3$s\n\n%4$s\n\n— Shared via Campus Desk</string>
 
+    <!-- New Complaint Tab (Milestone M5 - Figma 2:253 & PRD U5) -->
+    <string name="new_complaint_routing_badge">DIRECT ENCRYPTED ROUTING</string>
+    <string name="new_complaint_step_label">Step 1 of 2</string>
+    <string name="new_complaint_hero_title">File an Issue</string>
+    <string name="new_complaint_hero_subtitle">Dispatched directly to the dean &amp; specialized campus response team within 15 minutes.</string>
+    <string name="new_complaint_label_title">Complaint Title *</string>
+    <string name="new_complaint_label_brief">Brief summary</string>
+    <string name="new_complaint_hint_title">Room 304 Geyser not heating properly</string>
+    <string name="new_complaint_label_category">Incident Category</string>
+    <string name="new_complaint_category_selected_fmt">%1$s Selected</string>
+    <string name="cat_sub_hostel">Rooms, food &amp;\nrepairs</string>
+    <string name="cat_sub_transport">Buses, routes &amp;\npasses</string>
+    <string name="cat_sub_academic">Faculty, labs &amp;\nlectures</string>
+    <string name="cat_sub_fees">Billing &amp;\nscholarship</string>
+    <string name="cat_sub_library">Seats, books &amp;\nquiet zone</string>
+    <string name="cat_sub_general">Wi-Fi, ID &amp;\nsecurity</string>
+    <string name="new_complaint_label_urgency">Urgency Level</string>
+    <string name="new_complaint_label_description">Detailed Description *</string>
+    <string name="new_complaint_char_count_fmt">%1$d/500</string>
+    <string name="new_complaint_hint_description">Describe the exact location, issue details, and since when it has been occurring…</string>
+    <string name="new_complaint_confidential_note">Confidential to Wardens &amp; Registrar</string>
+    <string name="new_complaint_oversight_title">Central Registrar Oversight</string>
+    <string name="new_complaint_oversight_body">Logged transparently under Campus Resolution Charter #892. Escalation triggers automatically if unattended within 24 hours.</string>
+    <string name="new_complaint_btn_submit">Submit Complaint</string>
+    <string name="new_complaint_code_of_conduct">By submitting, you confirm details conform to the Student Code of Conduct.</string>
+    <string name="error_complaint_title_required">Please enter a complaint title</string>
+    <string name="error_complaint_desc_required">Please enter a detailed description</string>
+    <string name="complaint_submitted_toast">Complaint submitted successfully!</string>
+
+    <!-- My Complaints Tab (Milestone M5 - Figma 2:698 & PRD U6) -->
+    <string name="my_complaints_desk_label">TICKET RESOLUTION DESK</string>
+    <string name="my_complaints_active_fmt">%1$d Active</string>
+    <string name="my_complaints_track_status">Track Status</string>
+    <string name="my_complaints_sla_met">93% Campus SLA Met</string>
+    <string name="my_complaints_stat_total">Total Filed</string>
+    <string name="my_complaints_stat_pending">Pending</string>
+    <string name="my_complaints_stat_resolved">Resolved</string>
+    <string name="my_complaints_search_hint">Search by ticket ID (e.g. #C-0001) or keyword…</string>
+    <string name="my_complaints_filter_all">All</string>
+    <string name="my_complaints_logs_heading">Complaint Logs</string>
+    <string name="my_complaints_tickets_count_fmt">%1$d tickets</string>
+    <string name="sort_by_date_newest">Sort by Date</string>
+    <string name="sort_by_priority_high">Sort by Priority</string>
+    <string name="sort_by_pending_first">Pending First</string>
+    <string name="my_complaints_empty">No complaints found. Tap the \"New\" tab below to file an issue.</string>
+    <string name="complaint_card_view_timeline">View Details</string>
+    <string name="complaint_card_priority_fmt">Priority: %1$s</string>
+    <string name="complaint_card_student_fmt">By %1$s • %2$s</string>
+    <string name="my_complaints_sla_box_title">Campus SLA Guarantee</string>
+    <string name="my_complaints_sla_box_body">Emergency &amp; water infrastructure complaints receive dispatch review within 4 working hours.</string>
+    <string name="my_complaints_escalation_title">Unresolved over 24 hrs?</string>
+    <string name="my_complaints_escalation_sub">Direct Student Dean Escalation</string>
+    <string name="my_complaints_escalation_live">24/7 Live</string>
+    <string name="my_complaints_escalation_body">Need rapid intervention for safety, medical, or electrical hazards? Call the campus emergency officer directly.</string>
+    <string name="my_complaints_btn_call_desk">Call Desk</string>
+
+    <!-- Complaint Detail & Edit Screens (Milestone M5 - PRD U7, U8, U9) -->
+    <string name="complaint_detail_badge">TICKET DOSSIER</string>
+    <string name="complaint_detail_heading">Complaint Details</string>
+    <string name="complaint_detail_filed_on_fmt">Filed on %1$s</string>
+    <string name="complaint_detail_section_desc">Incident Description</string>
+    <string name="complaint_detail_section_reply">Official Admin Reply</string>
+    <string name="complaint_detail_no_reply">No reply yet — your complaint is currently pending review by the campus desk.</string>
+    <string name="complaint_detail_resolved_locked">This complaint has been marked Resolved and is locked from editing or deletion.</string>
+    <string name="complaint_btn_edit">Edit Complaint</string>
+    <string name="complaint_btn_delete">Delete Complaint</string>
+    <string name="complaint_delete_title">Delete Complaint?</string>
+    <string name="complaint_delete_message">Are you sure you want to delete ticket %1$s? This cannot be undone.</string>
+    <string name="complaint_deleted_toast">Complaint deleted</string>
+    <string name="edit_complaint_badge">UPDATE TICKET</string>
+    <string name="edit_complaint_heading">Edit Pending Complaint</string>
+    <string name="edit_complaint_subtitle">Update the title, category, urgency priority, or description while pending.</string>
+    <string name="edit_complaint_btn_save">Save Changes</string>
+    <string name="complaint_updated_toast">Complaint updated successfully</string>
+
     <!-- Complaint categories (names from the Figma design) -->
     <string name="category_hostel">Hostel &amp; Mess</string>
     <string name="category_transport">Transport</string>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GridView tile layout for Incident Category selection (Figma 2:293 & PRD Section 3 / U5). -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutCategoryTile"
+    android:layout_width="match_parent"
+    android:layout_height="136dp"
+    android:background="@drawable/bg_category_unselected"
+    android:padding="14dp">
+
+    <!-- Top-left Icon Circle (crimson when selected, white when unselected) -->
+    <FrameLayout
+        android:id="@+id/frameCategoryIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_circle_white">
+
+        <ImageView
+            android:id="@+id/ivCategoryIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/new_complaint_label_category"
+            android:src="@drawable/ic_cat_hostel" />
+    </FrameLayout>
+
+    <!-- Top-right Selected Checkmark Badge (visible only when selected) -->
+    <FrameLayout
+        android:id="@+id/frameCategoryCheck"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/bg_circle_crimson"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="8dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/new_complaint_label_category"
+            android:src="@drawable/ic_check_white"
+            app:tint="@color/white" />
+    </FrameLayout>
+
+    <!-- Category Title & Subtitle at bottom of tile -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <TextView
+            android:id="@+id/tvCategorySub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:lineSpacingExtra="1dp"
+            android:maxLines="2"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_small" />
+    </LinearLayout>
+
+</RelativeLayout>
